@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Aviral Tanwar — Data Engineer</title>
+  <meta name="description" content="Aviral Tanwar — Platform Owner & Solution Architect. Apache Airflow, Python, GCP. Building data infrastructure that moves 1M+ records/month."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<body id="body">
+
+<!-- CURSOR -->
+<div id="xhair"></div>
+
+<!-- KONAMI EASTER EGG -->
+<div id="konami">
+  <h2>You found it.</h2>
+  <p>
+    ↑↑↓↓←→←→ — the sequence that separates<br/>
+    engineers who read docs from those who write them.<br/><br/>
+    No Wix. No template. No Bootstrap.<br/>
+    Just Airflow DAGs, MySQL schemas, and the kind of<br/>
+    obsessive attention to detail that makes pipelines not break at 3am.
+  </p>
+  <div class="k-note">// aviraltanwar@gmail.com — if you want someone who finds easter eggs in prod too</div>
+  <button class="close-k" onclick="document.getElementById('konami').style.display='none'">[esc] close</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-id" id="logo" onclick="logoClick()">Aviral Tanwar<sup title="Platform Owner · Solution Architect">PO/SA</sup></div>
+  <div class="nav-r">
+    <a class="nav-link" href="#skills">Stack</a>
+    <a class="nav-link" href="#experience">Work</a>
+    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#contact">Contact</a>
+    <div class="toggle-wrap">
+      <span class="toggle-label active" id="lbl-light">Light</span>
+      <label class="switch">
+        <input type="checkbox" id="theme-switch" onchange="toggleTheme(this.checked)"/>
+        <div class="switch-track"><div class="switch-thumb"></div></div>
+      </label>
+      <span class="toggle-label" id="lbl-dark">Dark</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-l">
+    <div class="hero-eyebrow">Platform Owner · Solution Architect</div>
+    <h1 class="hero-name">Aviral<em>Tanwar.</em></h1>
+    <div class="hero-title">
+      Data Engineer &amp; Workflow Orchestration<br/>
+      Apache Airflow · Python · GCP · Kafka
+    </div>
+    <p class="hero-desc">
+      I build the infrastructure that moves data at scale.
+      <strong>1M+ records/month</strong>,
+      7+ production deployments, zero tolerance for manual toil.
+      Currently architecting real-time streaming pipelines at NRV DesignX.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-a" href="#projects">View Work</a>
+      <a class="btn-b" href="#contact">Say hello →</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <svg id="pipeline-svg" viewBox="0 0 300 380">
+      <text x="8" y="18" class="pip-meta">// xbot.pipeline.live</text>
+      <rect x="80"  y="36"  width="140" height="38" class="pip-rect"/>
+      <text x="150" y="59"  class="pip-text">IoT Source</text>
+      <rect x="55"  y="114" width="88"  height="38" class="pip-rect"/>
+      <text x="99"  y="137" class="pip-text">Airflow DAG</text>
+      <rect x="157" y="114" width="88"  height="38" class="pip-rect"/>
+      <text x="201" y="137" class="pip-text">ManEx v3</text>
+      <rect x="25"  y="196" width="108" height="38" class="pip-rect"/>
+      <text x="79"  y="219" class="pip-text">MySQL</text>
+      <rect x="167" y="196" width="108" height="38" class="pip-rect"/>
+      <text x="221" y="219" class="pip-text">GCS / Logs</text>
+      <rect x="80"  y="278" width="140" height="38" class="pip-rect"/>
+      <text x="150" y="301" class="pip-text">BI / Power BI</text>
+      <line x1="150" y1="74"  x2="99"  y2="114" class="pip-line"/>
+      <line x1="150" y1="74"  x2="201" y2="114" class="pip-line"/>
+      <line x1="99"  y1="152" x2="79"  y2="196" class="pip-line"/>
+      <line x1="99"  y1="152" x2="221" y2="196" class="pip-line"/>
+      <line x1="201" y1="152" x2="79"  y2="196" class="pip-line"/>
+      <line x1="79"  y1="234" x2="150" y2="278" class="pip-line"/>
+      <line x1="221" y1="234" x2="150" y2="278" class="pip-line"/>
+      <circle id="pkt1" cx="150" cy="36" r="3.5" fill="#c1440e" opacity="0"/>
+      <circle id="pkt2" cx="201" cy="114" r="3.5" fill="#1a4f8a" opacity="0"/>
+      <text x="8" y="348" class="pip-meta">records_total: <tspan id="rec-ct" style="fill:var(--accent);opacity:1">1,247,832</tspan></text>
+      <text x="8" y="363" class="pip-meta">dag_status: <tspan style="fill:var(--accent);opacity:1">23/23 OK</tspan></text>
+    </svg>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Apache Airflow</span><span class="hi"> · </span><span>1M+ records/mo</span><span class="hi"> · </span>
+    <span>Python · SQL</span><span class="hi"> · </span><span>GCP · Docker</span><span class="hi"> · </span>
+    <span>CI/CD · Jenkins</span><span class="hi"> · </span><span>ManEx Framework</span><span class="hi"> · </span>
+    <span>Kafka in progress</span><span class="hi"> · </span><span>XBot Platform</span><span class="hi"> · </span>
+    <span>DFOS Ecosystem</span><span class="hi"> · </span>
+    <!-- duplicate for seamless loop -->
+    <span>Apache Airflow</span><span class="hi"> · </span><span>1M+ records/mo</span><span class="hi"> · </span>
+    <span>Python · SQL</span><span class="hi"> · </span><span>GCP · Docker</span><span class="hi"> · </span>
+    <span>CI/CD · Jenkins</span><span class="hi"> · </span><span>ManEx Framework</span><span class="hi"> · </span>
+    <span>Kafka in progress</span><span class="hi"> · </span><span>XBot Platform</span><span class="hi"> · </span>
+    <span>DFOS Ecosystem</span><span class="hi"> · </span>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-label"><span class="sec-num">01</span> Tech Stack</div>
+  <div class="skills-outer reveal">
+    <div class="skills-intro">Tools I reach for when the <em>problem is real.</em></div>
+    <div class="skills-cols">
+      <div class="sk-row">
+        <div class="sk-cat">Orchestration</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Apache Airflow</span>
+          <span class="sk-tag">DAG Design</span>
+          <span class="sk-tag">Scheduler Tuning</span>
+          <span class="sk-tag">RBAC</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Languages</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Python</span>
+          <span class="sk-tag">SQL / MySQL</span>
+          <span class="sk-tag">Bash</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Cloud Infra</div>
+        <div class="sk-tags">
+          <span class="sk-tag">GCP Compute</span>
+          <span class="sk-tag">Cloud Storage</span>
+          <span class="sk-tag">Docker</span>
+          <span class="sk-tag">Linux</span>
+          <span class="sk-tag">Git</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Data Eng.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">ETL Pipelines</span>
+          <span class="sk-tag">Incremental ETL</span>
+          <span class="sk-tag">Data Modeling</span>
+          <span class="sk-tag">Power BI</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Automation</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Jenkins</span>
+          <span class="sk-tag">GitHub Actions</span>
+          <span class="sk-tag">REST APIs</span>
+          <span class="sk-tag">JSON DSL</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">In Progress</div>
+        <div class="sk-tags">
+          <span class="sk-tag wip">Apache Kafka</span>
+          <span class="sk-tag wip">Databricks</span>
+          <span class="sk-tag wip">BigQuery</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-label"><span class="sec-num">02</span> Experience</div>
+  <div class="exp reveal">
+    <div class="exp-side">
+      <div class="exp-date">May 2024 – Present</div>
+      <div class="exp-co">NRV DesignX Pvt. Ltd.</div>
+      <div class="exp-loc">Noida, India</div>
+      <div class="exp-tag">Associate Manager</div>
+    </div>
+    <div class="exp-main">
+      <h3>Platform Owner — XBot Orchestration System</h3>
+      <div class="exp-kpis">
+        <div class="kpi"><div class="kpi-val">1M+</div><div class="kpi-lab">records/mo</div></div>
+        <div class="kpi"><div class="kpi-val">7+</div><div class="kpi-lab">deployments</div></div>
+        <div class="kpi"><div class="kpi-val">40%</div><div class="kpi-lab">effort saved</div></div>
+        <div class="kpi"><div class="kpi-val">70%</div><div class="kpi-lab">less follow-ups</div></div>
+      </div>
+      <ul class="exp-pts">
+        <li>Owned end-to-end XBot lifecycle — architecture, deployment, scaling, observability — on GCP VMs with Apache Airflow</li>
+        <li>Designed ManEx v3: low-code automation engine, 15+ reusable components, JSON-driven workflow triggers for non-engineers</li>
+        <li>Incremental ETL + historical snapshots across 12+ MySQL tables — 100% reproducibility, time-travel analytics</li>
+        <li>CI/CD via Jenkins + GitHub for controlled DAG promotion from QA to production with zero-downtime deploys</li>
+        <li>100K+ logs/month centralized on GCS with automated lifecycle retention; 5,000+ notification alerts/month</li>
+        <li>Processed 1M+ IoT records/month (OEE, energy, SPC, alarms) into real-time KPIs for 5+ factory plant managers</li>
+        <li>Architecting Kafka streaming pipelines for real-time IoT telemetry ingestion [in progress]</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-label"><span class="sec-num">03</span> Projects</div>
+  <div class="proj-grid reveal">
+    <div class="proj-card" data-num="I">
+      <div class="proj-status"><span class="proj-dot"></span>Production · 7+ deployments</div>
+      <div class="proj-title">XBot</div>
+      <p class="proj-desc">Enterprise workflow orchestration on Apache Airflow. Complex DFOS schemas, IoT data streams, config-driven DAGs, full observability. Built from zero, owns itself in prod.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Airflow</span>
+        <span class="proj-chip">Python</span>
+        <span class="proj-chip">GCP</span>
+        <span class="proj-chip">MySQL</span>
+        <span class="proj-chip">Docker</span>
+      </div>
+    </div>
+    <div class="proj-card" data-num="II">
+      <div class="proj-status"><span class="proj-dot"></span>Production · 20+ workflows</div>
+      <div class="proj-title">ManEx v3</div>
+      <p class="proj-desc">Low-code automation engine. Non-engineers trigger full ETL workflows via JSON. 15+ composable functions: DB ops, API calls, validations, notifications. ~40% faster delivery.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Python</span>
+        <span class="proj-chip">SQL</span>
+        <span class="proj-chip">REST APIs</span>
+        <span class="proj-chip">JSON DSL</span>
+      </div>
+    </div>
+    <div class="proj-card" data-num="III">
+      <div class="proj-status"><span class="proj-dot"></span>Live · 5+ factories</div>
+      <div class="proj-title">DFOS Data Platform</div>
+      <p class="proj-desc">Unified data model collapsing complex multi-table schemas into a single queryable layer. 35% SLA improvement via partitioning, backfill strategies, scheduling controls.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Data Modeling</span>
+        <span class="proj-chip">Incremental ETL</span>
+        <span class="proj-chip">MySQL</span>
+        <span class="proj-chip">Airflow</span>
+      </div>
+    </div>
+    <div class="proj-card" data-num="IV">
+      <div class="proj-status"><span class="proj-dot wip"></span>In Progress · streaming</div>
+      <div class="proj-title">Kafka Streaming Pipeline</div>
+      <p class="proj-desc">Real-time IoT telemetry ingestion via Apache Kafka. Event-driven Airflow triggers. Moving the entire platform from scheduled batch to continuous streaming architecture.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Kafka</span>
+        <span class="proj-chip">Streaming</span>
+        <span class="proj-chip">IoT</span>
+        <span class="proj-chip">Airflow</span>
+        <span class="proj-chip">Python</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-label"><span class="sec-num">04</span> Contact</div>
+  <div class="contact-grid reveal">
+    <div>
+      <div class="contact-big">Got a pipeline that needs fixing?<strong>Let's talk.</strong></div>
+      <p class="contact-note">
+        Open to senior data engineering roles, platform architecture work,
+        or just a conversation about orchestration systems done right.<br/><br/>
+        Based in Noida, India.
+        <span class="footer-easter" onclick="hint()" title="try something">There's more to this page than meets the eye.</span>
+      </p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:aviraltanwar@gmail.com" class="c-link">
+        <div class="c-link-l"><span class="c-link-type">Email</span><span class="c-link-label">aviraltanwar@gmail.com</span></div>
+        <span class="c-link-arrow">→</span>
+      </a>
+      <a href="tel:+919971886273" class="c-link">
+        <div class="c-link-l"><span class="c-link-type">Phone</span><span class="c-link-label">+91 99718 86273</span></div>
+        <span class="c-link-arrow">→</span>
+      </a>
+      <a href="https://linkedin.com/in/aviraltanwar" target="_blank" rel="noopener" class="c-link">
+        <div class="c-link-l"><span class="c-link-type">LinkedIn</span><span class="c-link-label">linkedin.com/in/aviraltanwar</span></div>
+        <span class="c-link-arrow">→</span>
+      </a>
+      <a href="https://github.com/aviraltanwar" target="_blank" rel="noopener" class="c-link">
+        <div class="c-link-l"><span class="c-link-type">GitHub</span><span class="c-link-label">github.com/aviraltanwar</span></div>
+        <span class="c-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-sig">Aviral Tanwar</div>
+  <div>JIIT · B.Tech CSE · 2020–2024</div>
+  <div id="footer-clock">--:--:--</div>
+  <div>Noida, India · UTC+5:30</div>
+  <div>hand-crafted · no templates</div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
