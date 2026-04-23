@@ -11,6 +11,9 @@
 </head>
 <body id="body">
 
+<!-- FULL-PAGE BACKGROUND CANVAS -->
+<canvas id="bg-canvas"></canvas>
+
 <!-- CURSOR -->
 <div id="xhair"></div>
 
@@ -30,11 +33,13 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-id" id="logo" onclick="logoClick()">Aviral Tanwar<sup title="Platform Owner · Solution Architect">PO/SA</sup></div>
+  <div class="nav-id" id="logo" onclick="logoClick()">Aviral Tanwar<sup title="Platform Owner · Solution Architect · Data Engineer"></sup></div>
+  <div class="nav-quote" id="nav-quote">// loading excuse...</div>
   <div class="nav-r">
     <a class="nav-link" href="#skills">Stack</a>
     <a class="nav-link" href="#experience">Work</a>
     <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#achievements">Awards</a>
     <a class="nav-link" href="#contact">Contact</a>
     <div class="toggle-wrap">
       <span class="toggle-label active" id="lbl-light">Light</span>
@@ -42,16 +47,18 @@
         <input type="checkbox" id="theme-switch" onchange="toggleTheme(this.checked)"/>
         <div class="switch-track"><div class="switch-thumb"></div></div>
       </label>
-      <span class="toggle-label" id="lbl-dark">Dark</span>
+      <div class="dark-col">
+        <span class="toggle-label" id="lbl-dark">Dark</span>
+        <span class="bean-seed" id="bean-seed" onclick="beanBurst(event)" title="">🫘</span>
+      </div>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <canvas id="hero-canvas"></canvas>
   <div class="hero-l">
-    <div class="hero-eyebrow">Platform Owner · Solution Architect</div>
+    <div class="hero-eyebrow">Platform Owner · Solution Architect · Data Engineer</div>
     <h1 class="hero-name">Aviral<em>Tanwar.</em></h1>
     <div class="hero-title">
       Data Engineer &amp; Workflow Orchestration<br/>
@@ -67,34 +74,6 @@
       <a class="btn-a" href="#projects">View Work</a>
       <a class="btn-b" href="#contact">Say hello →</a>
     </div>
-  </div>
-  <div class="hero-r">
-    <svg id="pipeline-svg" viewBox="0 0 300 380">
-      <text x="8" y="18" class="pip-meta">// xbot.pipeline.live</text>
-      <rect x="80"  y="36"  width="140" height="38" class="pip-rect"/>
-      <text x="150" y="59"  class="pip-text">IoT Source</text>
-      <rect x="55"  y="114" width="88"  height="38" class="pip-rect"/>
-      <text x="99"  y="137" class="pip-text">Airflow DAG</text>
-      <rect x="157" y="114" width="88"  height="38" class="pip-rect"/>
-      <text x="201" y="137" class="pip-text">ManEx v3</text>
-      <rect x="25"  y="196" width="108" height="38" class="pip-rect"/>
-      <text x="79"  y="219" class="pip-text">MySQL</text>
-      <rect x="167" y="196" width="108" height="38" class="pip-rect"/>
-      <text x="221" y="219" class="pip-text">GCS / Logs</text>
-      <rect x="80"  y="278" width="140" height="38" class="pip-rect"/>
-      <text x="150" y="301" class="pip-text">BI / Power BI</text>
-      <line x1="150" y1="74"  x2="99"  y2="114" class="pip-line"/>
-      <line x1="150" y1="74"  x2="201" y2="114" class="pip-line"/>
-      <line x1="99"  y1="152" x2="79"  y2="196" class="pip-line"/>
-      <line x1="99"  y1="152" x2="221" y2="196" class="pip-line"/>
-      <line x1="201" y1="152" x2="79"  y2="196" class="pip-line"/>
-      <line x1="79"  y1="234" x2="150" y2="278" class="pip-line"/>
-      <line x1="221" y1="234" x2="150" y2="278" class="pip-line"/>
-      <circle id="pkt1" cx="150" cy="36" r="3.5" fill="#c1440e" opacity="0"/>
-      <circle id="pkt2" cx="201" cy="114" r="3.5" fill="#1a4f8a" opacity="0"/>
-      <text x="8" y="348" class="pip-meta">records_total: <tspan id="rec-ct" style="fill:var(--accent);opacity:1">1,247,832</tspan></text>
-      <text x="8" y="363" class="pip-meta">dag_status: <tspan style="fill:var(--accent);opacity:1">23/23 OK</tspan></text>
-    </svg>
   </div>
 </section>
 
@@ -181,14 +160,17 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="sec-label"><span class="sec-num">02</span> Experience</div>
-  <div class="exp reveal">
-    <div class="exp-side">
-      <div class="exp-date">May 2024 – Present</div>
-      <div class="exp-co">NRV DesignX Pvt. Ltd.</div>
-      <div class="exp-loc">Noida, India</div>
-      <div class="exp-tag">Associate Manager</div>
-    </div>
+  <div class="exp exp-with-pipeline reveal">
     <div class="exp-main">
+      <div class="exp-meta-line">
+        <span>May 2024 – Present</span>
+        <span class="exp-meta-sep">·</span>
+        <span>NRV DesignX Pvt. Ltd.</span>
+        <span class="exp-meta-sep">·</span>
+        <span>Noida, India</span>
+        <span class="exp-meta-sep">·</span>
+        <span class="exp-tag-inline">Associate Manager</span>
+      </div>
       <h3>Platform Owner — XBot Orchestration System</h3>
       <div class="exp-kpis">
         <div class="kpi"><div class="kpi-val">1M+</div><div class="kpi-lab">records/mo</div></div>
@@ -205,6 +187,34 @@
         <li>Processed 1M+ IoT records/month (OEE, energy, SPC, alarms) into real-time KPIs for 5+ factory plant managers</li>
         <li>Architecting Kafka streaming pipelines for real-time IoT telemetry ingestion [in progress]</li>
       </ul>
+    </div>
+    <div class="exp-pipeline">
+      <svg id="pipeline-svg" viewBox="0 0 300 380">
+        <text x="8" y="18" class="pip-meta">// xbot.pipeline.live</text>
+        <rect x="80"  y="36"  width="140" height="38" class="pip-rect"/>
+        <text x="150" y="59"  class="pip-text">IoT Source</text>
+        <rect x="55"  y="114" width="88"  height="38" class="pip-rect"/>
+        <text x="99"  y="137" class="pip-text">Airflow DAG</text>
+        <rect x="157" y="114" width="88"  height="38" class="pip-rect"/>
+        <text x="201" y="137" class="pip-text">ManEx v3</text>
+        <rect x="25"  y="196" width="108" height="38" class="pip-rect"/>
+        <text x="79"  y="219" class="pip-text">MySQL</text>
+        <rect x="167" y="196" width="108" height="38" class="pip-rect"/>
+        <text x="221" y="219" class="pip-text">GCS / Logs</text>
+        <rect x="80"  y="278" width="140" height="38" class="pip-rect"/>
+        <text x="150" y="301" class="pip-text">BI / Power BI</text>
+        <line x1="150" y1="74"  x2="99"  y2="114" class="pip-line"/>
+        <line x1="150" y1="74"  x2="201" y2="114" class="pip-line"/>
+        <line x1="99"  y1="152" x2="79"  y2="196" class="pip-line"/>
+        <line x1="99"  y1="152" x2="221" y2="196" class="pip-line"/>
+        <line x1="201" y1="152" x2="79"  y2="196" class="pip-line"/>
+        <line x1="79"  y1="234" x2="150" y2="278" class="pip-line"/>
+        <line x1="221" y1="234" x2="150" y2="278" class="pip-line"/>
+        <circle id="pkt1" cx="150" cy="36" r="3.5" fill="#c1440e" opacity="0"/>
+        <circle id="pkt2" cx="201" cy="114" r="3.5" fill="#1a4f8a" opacity="0"/>
+        <text x="8" y="348" class="pip-meta">records_total: <tspan id="rec-ct" style="fill:var(--accent);opacity:1">1,247,832</tspan></text>
+        <text x="8" y="363" class="pip-meta">dag_status: <tspan style="fill:var(--accent);opacity:1">23/23 OK</tspan></text>
+      </svg>
     </div>
   </div>
 </section>
@@ -262,9 +272,40 @@
   </div>
 </section>
 
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="sec-label"><span class="sec-num">04</span> Achievements</div>
+  <div class="ach-grid reveal">
+    <div class="ach-card">
+      <div class="ach-head">
+        <div class="ach-logo">HR</div>
+        <div class="ach-meta">
+          <div class="ach-platform">HackerRank</div>
+          <div class="ach-badge">Certificate</div>
+        </div>
+      </div>
+      <div class="ach-title">Python &amp; Problem Solving</div>
+      <p class="ach-desc">Verified proficiency in Python programming and algorithmic problem-solving. Issued by HackerRank — a credential that validates core engineering fundamentals.</p>
+      <a href="https://www.hackerrank.com/certificates" target="_blank" rel="noopener" class="ach-link">View Certificate ↗</a>
+    </div>
+    <div class="ach-card">
+      <div class="ach-head">
+        <div class="ach-logo">HR</div>
+        <div class="ach-meta">
+          <div class="ach-platform">HackerRank</div>
+          <div class="ach-badge">Solutions</div>
+        </div>
+      </div>
+      <div class="ach-title">100+ Problems Solved</div>
+      <p class="ach-desc">Active competitive profile with solutions in Python across data structures, algorithms, SQL, and problem-solving domains. Consistent contributor.</p>
+      <a href="https://www.hackerrank.com/aviraltanwar" target="_blank" rel="noopener" class="ach-link">View HackerRank Profile ↗</a>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
-  <div class="sec-label"><span class="sec-num">04</span> Contact</div>
+  <div class="sec-label"><span class="sec-num">05</span> Contact</div>
   <div class="contact-grid reveal">
     <div>
       <div class="contact-big">Got a pipeline that needs fixing?<strong>Let's talk.</strong></div>
@@ -277,18 +318,30 @@
     </div>
     <div class="contact-links">
       <a href="mailto:aviraltanwar@gmail.com" class="c-link">
+        <div class="c-link-icon">
+          <svg width="18" height="18" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="12" rx="1"/><path d="M1 4l8 5 8-5"/></svg>
+        </div>
         <div class="c-link-l"><span class="c-link-type">Email</span><span class="c-link-label">aviraltanwar@gmail.com</span></div>
         <span class="c-link-arrow">→</span>
       </a>
       <a href="tel:+919971886273" class="c-link">
+        <div class="c-link-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 1.5h4l2 5-2.5 1.5a11 11 0 005 5L12.5 11l5 2v4c0 .8-4 3-9-2s-7.8-9-6-12.5z"/></svg>
+        </div>
         <div class="c-link-l"><span class="c-link-type">Phone</span><span class="c-link-label">+91 99718 86273</span></div>
         <span class="c-link-arrow">→</span>
       </a>
       <a href="https://linkedin.com/in/aviraltanwar" target="_blank" rel="noopener" class="c-link">
+        <div class="c-link-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="6" width="3.5" height="11"/><circle cx="2.75" cy="2.75" r="1.75"/><path d="M6.5 6h3v1.6s.8-1.6 3-1.6c2.4 0 4 1.4 4 4.4V17h-3.5v-6c0-1.3-.6-2-1.7-2s-1.8.8-1.8 2V17H6.5V6z"/></svg>
+        </div>
         <div class="c-link-l"><span class="c-link-type">LinkedIn</span><span class="c-link-label">linkedin.com/in/aviraltanwar</span></div>
         <span class="c-link-arrow">→</span>
       </a>
       <a href="https://github.com/aviraltanwar" target="_blank" rel="noopener" class="c-link">
+        <div class="c-link-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M9 0C4 0 0 4 0 9c0 4 2.6 7.4 6.2 8.6.5.1.6-.2.6-.5v-1.7c-2.6.6-3.1-1.2-3.1-1.2-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.3.8 1.3.8.7 1.2 1.9 1 2.3.8.1-.5.3-.9.5-1.1-1.9-.2-3.8-1-3.8-4.3 0-1 .3-1.8.8-2.5-.1-.2-.4-1.1.1-2.4 0 0 .7-.2 2.4.8.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.7-1 2.4-.8 2.4-.8.4 1.2.2 2.1.1 2.4.5.6.8 1.4.8 2.5 0 3.4-2 4.2-3.9 4.4.3.3.6.8.6 1.6v2.3c0 .2.2.5.6.4C15.4 16.4 18 13 18 9 18 4 14 0 9 0z"/></svg>
+        </div>
         <div class="c-link-l"><span class="c-link-type">GitHub</span><span class="c-link-label">github.com/aviraltanwar</span></div>
         <span class="c-link-arrow">→</span>
       </a>
@@ -302,7 +355,7 @@
   <div>JIIT · B.Tech CSE · 2020–2024</div>
   <div id="footer-clock">--:--:--</div>
   <div>Noida, India · UTC+5:30</div>
-  <div>hand-crafted · no templates</div>
+  <div>built with precision · no templates</div>
 </footer>
 
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
