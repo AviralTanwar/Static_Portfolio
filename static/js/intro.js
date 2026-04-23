@@ -93,6 +93,19 @@
   try { history.scrollRestoration = 'manual'; } catch (e) {}
 
   function render(p) {
+    // Drive background canvas speed
+    let bgSpeed;
+    if (p < 0.33) {
+      bgSpeed = lerp(3, 5, p / 0.33);
+    } else if (p < 0.60) {
+      bgSpeed = lerp(5, 6, (p - 0.33) / 0.27);
+    } else if (p < 0.95) {
+      bgSpeed = lerp(6, 1, smooth((p - 0.60) / 0.35));
+    } else {
+      bgSpeed = 1;
+    }
+    window.__bgSpeed = bgSpeed;
+
     const phase =
       p < 0.33 ? 'boot' :
       p < 0.60 ? 'identity' :
@@ -172,6 +185,7 @@
 
   function finish() {
     if (finished) return;
+    window.__bgSpeed = 1;
     finished = true;
     intro.classList.add('hidden');
     body.classList.remove('intro-locked');

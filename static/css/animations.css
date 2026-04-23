@@ -1,0 +1,77 @@
+/* =========================================================
+   PORTFOLIO ANIMATIONS — additive layer, no overrides
+   Matches existing IBM Plex Mono / Fraunces aesthetic.
+   ========================================================= */
+
+/* ===== Hero stagger ===== */
+.hero-eyebrow,
+.hero-name,
+.hero-title,
+.hero-desc,
+.hero-btns {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.hero-animated .hero-eyebrow { opacity: 1; transform: none; transition-delay: .05s; }
+.hero-animated .hero-name    { opacity: 1; transform: none; transition-delay: .18s; }
+.hero-animated .hero-title   { opacity: 1; transform: none; transition-delay: .30s; }
+.hero-animated .hero-desc    { opacity: 1; transform: none; transition-delay: .42s; }
+.hero-animated .hero-btns    { opacity: 1; transform: none; transition-delay: .56s; }
+
+/* ===== Section label sweep ===== */
+.sec-label {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+.sec-label.label-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Skill tag stagger ===== */
+.sk-tag {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.skills-revealed .sk-tag { opacity: 1; transform: none; }
+
+/* ===== KPI count-up — highlight flash ===== */
+.kpi-val.kpi-counting {
+  color: var(--accent);
+  transition: color .8s ease;
+}
+
+/* ===== Project card 3D tilt ===== */
+.proj-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0);
+  transition: box-shadow .25s ease, border-color .25s ease, transform .08s linear;
+}
+.proj-card:not(:hover) {
+  transition: box-shadow .4s ease, border-color .4s ease, transform .45s ease;
+}
+
+/* ===== Contact links stagger ===== */
+.c-link {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity .35s ease, transform .35s ease,
+              padding .2s, border-color .2s;
+}
+.contact-revealed .c-link { opacity: 1; transform: none; }
+
+/* ===== Chapter section number count ===== */
+.sec-num {
+  display: inline-block;
+  min-width: 2ch;
+  transition: color .3s;
+}
+
+/* ===== Parallax hero ===== */
+#hero {
+  will-change: transform;
+}

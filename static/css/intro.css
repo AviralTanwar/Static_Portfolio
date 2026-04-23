@@ -40,8 +40,7 @@ body.intro-revealing > #bean-corner {
 }
 .intro-bg {
   position: absolute; inset: 0;
-  background: var(--bg);
-  transition: background .3s;
+  background: transparent;
 }
 .intro-grid {
   position: absolute; inset: 0;

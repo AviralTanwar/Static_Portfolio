@@ -117,7 +117,7 @@ window.addEventListener('resize', () => {
 
 function renderCanvas() {
   ctx.clearRect(0, 0, W, H);
-  t += .007;
+  t += .007 * (window.__bgSpeed !== undefined ? window.__bgSpeed : 1);
   const fl = dark ? '230,220,200' : '14,14,14';
   const fa = dark ? '217,79,30'   : '184,58,12';
   const now = performance.now();
