@@ -8,8 +8,138 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="static/css/style.css"/>
+  <link rel="stylesheet" href="static/css/intro.css"/>
 </head>
-<body id="body">
+<body id="body" class="intro-locked">
+
+<div id="intro" aria-hidden="false">
+  <div class="intro-bg"></div>
+  <div class="intro-grid"></div>
+
+  <!-- HUD corners -->
+  <div class="intro-hud hud-tl">
+    <div class="hud-line">sys.portfolio.boot</div>
+    <div class="hud-line dim">build <span id="hud-build">2026.04.24</span></div>
+    <div class="hud-line dim">host <span id="hud-host">at@noida</span></div>
+  </div>
+  <div class="intro-hud hud-tr">
+    <div class="hud-line">progress <span id="hud-prog">00%</span></div>
+    <div class="hud-line dim">scroll ↓ to continue</div>
+    <div class="hud-line dim">esc / click to skip</div>
+  </div>
+  <div class="intro-hud hud-bl">
+    <div class="hud-line dim">[phase] <span id="hud-phase">boot</span></div>
+  </div>
+  <div class="intro-hud hud-br">
+    <div class="hud-line dim">records <span id="hud-rec">0</span></div>
+    <div class="hud-line dim">dags    <span id="hud-dags">0/23</span></div>
+  </div>
+
+  <!-- Scene 1: Terminal -->
+  <div class="intro-scene scene-term" id="scene-term">
+    <div class="term-window">
+      <div class="term-head">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="term-title">aviral@portfolio — /bin/zsh</span>
+      </div>
+      <div class="term-body" id="term-body">
+        <div class="t-line" data-show="0.02"><span class="pr">$</span> whoami<span class="cur">▋</span></div>
+        <div class="t-line" data-show="0.08">aviral_tanwar</div>
+        <div class="t-line" data-show="0.12"><span class="dim">// platform_owner · solution_architect · data_engineer</span></div>
+        <div class="t-line" data-show="0.18"><span class="pr">$</span> cat about.md</div>
+        <div class="t-line" data-show="0.22">i build things that don't break at 3am.</div>
+        <div class="t-line" data-show="0.26">i like pipelines, puzzles, and pressing <span class="ok">enter</span>.</div>
+        <div class="t-line" data-show="0.30"><span class="pr">$</span> ./run_portfolio<span class="cur">▋</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scene 2: AT glyph -->
+  <div class="intro-scene scene-glyph" id="scene-glyph">
+    <div class="glyph-wrap" id="glyph-wrap">
+      <div class="glyph-meta top">// identity.resolved</div>
+      <div class="glyph-at"><em>AT</em><span class="glyph-dot">·</span></div>
+      <div class="glyph-tag">Aviral Tanwar — Data Engineer</div>
+      <div class="glyph-rule"></div>
+      <div class="glyph-meta bot">PO / SA / DE</div>
+    </div>
+  </div>
+
+  <!-- Scene 3: Life DAG -->
+  <div class="intro-scene scene-pipe" id="scene-pipe">
+    <div class="pipe-title">// life.dag — run_id: since_2002 · state: <span class="lbl-ok">running</span></div>
+    <svg class="pipe-svg" viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0 L8 4 L0 8 z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <g class="pipe-rules">
+        <line x1="60" x2="1140" y1="60"  y2="60"  class="rule"/>
+        <line x1="60" x2="1140" y1="320" y2="320" class="rule"/>
+        <text x="60" y="48" class="lane-label">timeline</text>
+        <text x="1140" y="340" text-anchor="end" class="lane-label">→ present</text>
+      </g>
+      <g class="pipe-years">
+        <g class="yr" data-at="0.60"><text x="110"  y="88">2002</text></g>
+        <g class="yr" data-at="0.62"><text x="280"  y="88">2016</text></g>
+        <g class="yr" data-at="0.64"><text x="450"  y="88">2020</text></g>
+        <g class="yr" data-at="0.66"><text x="620"  y="88">2022</text></g>
+        <g class="yr" data-at="0.70"><text x="790"  y="88">2024</text></g>
+        <g class="yr" data-at="0.74"><text x="960"  y="88">now</text></g>
+        <g class="yr" data-at="0.78"><text x="1120" y="88" text-anchor="end">?</text></g>
+      </g>
+      <g class="pipe-edges" stroke="currentColor" fill="none" stroke-width="1.2">
+        <line class="edge" data-at="0.62" x1="200"  y1="180" x2="225" y2="180" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.64" x1="370"  y1="180" x2="395" y2="180" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.66" x1="540"  y1="180" x2="565" y2="180" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.68" x1="710"  y1="180" x2="735" y2="180" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.72" x1="880"  y1="180" x2="905" y2="130" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.72" x1="880"  y1="180" x2="905" y2="230" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.76" x1="1050" y1="130" x2="1075" y2="180" marker-end="url(#ah)"/>
+        <line class="edge" data-at="0.76" x1="1050" y1="230" x2="1075" y2="180" marker-end="url(#ah)"/>
+      </g>
+      <g class="pipe-nodes airflow">
+        <g class="node ok"      data-at="0.60"><rect x="70"   y="160" width="130" height="40" rx="4"/><circle cx="85"   cy="180" r="4" class="status"/><text x="100"  y="185">start</text></g>
+        <g class="node ok"      data-at="0.62"><rect x="225"  y="160" width="145" height="40" rx="4"/><circle cx="240"  cy="180" r="4" class="status"/><text x="255"  y="185">hello_world</text></g>
+        <g class="node ok"      data-at="0.64"><rect x="395"  y="160" width="145" height="40" rx="4"/><circle cx="410"  cy="180" r="4" class="status"/><text x="425"  y="185">enroll.jiit</text></g>
+        <g class="node ok"      data-at="0.66"><rect x="565"  y="160" width="145" height="40" rx="4"/><circle cx="580"  cy="180" r="4" class="status"/><text x="595"  y="185">break_prod</text></g>
+        <g class="node ok"      data-at="0.68"><rect x="735"  y="160" width="145" height="40" rx="4"/><circle cx="750"  cy="180" r="4" class="status"/><text x="765"  y="185">fix_prod</text></g>
+        <g class="node ok"      data-at="0.72"><rect x="905"  y="110" width="145" height="40" rx="4"/><circle cx="920"  cy="130" r="4" class="status"/><text x="935"  y="135">ship_things</text></g>
+        <g class="node run"     data-at="0.72"><rect x="905"  y="210" width="145" height="40" rx="4"/><circle cx="920"  cy="230" r="4" class="status"/><text x="935"  y="235">stay_curious</text></g>
+        <g class="node pending" data-at="0.76"><rect x="1075" y="160" width="65"  height="40" rx="4"/><circle cx="1090" cy="180" r="4" class="status"/><text x="1107" y="185">???</text></g>
+      </g>
+      <circle id="packet" class="packet" r="3.5" cx="100" cy="180"/>
+    </svg>
+    <div class="pipe-legend">
+      <span class="lg"><span class="lg-dot ok"></span>success</span>
+      <span class="lg"><span class="lg-dot run"></span>running</span>
+      <span class="lg"><span class="lg-dot pending"></span>scheduled</span>
+      <span class="lg muted">tasks 8 · failed 0 · retries: who's counting</span>
+    </div>
+  </div>
+
+  <!-- Bottom progress bar -->
+  <div class="intro-progress">
+    <div class="intro-progress-bar" id="intro-bar"></div>
+    <div class="intro-progress-ticks">
+      <span class="tick" style="left:0%"></span>
+      <span class="tick" style="left:33%"></span>
+      <span class="tick" style="left:66%"></span>
+      <span class="tick" style="left:100%"></span>
+    </div>
+    <div class="intro-progress-labels">
+      <span>boot</span><span>identity</span><span>pipeline</span><span>ready</span>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="intro-hint">
+    <div class="hint-chev"><span>↓</span><span>↓</span><span>↓</span></div>
+    <div class="hint-text">scroll</div>
+  </div>
+</div>
+<!-- end intro -->
 
 <!-- SCROLL PROGRESS -->
 <div id="scroll-progress"></div>
@@ -461,5 +591,6 @@
 </div>
 
 <script src="static/js/main.js"></script>
+<script src="static/js/intro.js"></script>
 </body>
 </html>

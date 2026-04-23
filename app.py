@@ -1,12 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, send_file
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return send_file("index.html")
 
 @app.route("/api/excuse")
 def get_excuse():

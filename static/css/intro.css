@@ -1,0 +1,373 @@
+/* =========================================================
+   INTRO OVERLAY — scroll-scrubbed boot animation
+   Sits above portfolio; body.intro-locked prevents real scroll.
+   ========================================================= */
+
+/* lock the page while intro is active */
+body.intro-locked { overflow: hidden !important; height: 100vh; }
+body.intro-locked > nav,
+body.intro-locked > section,
+body.intro-locked > .ticker,
+body.intro-locked > footer,
+body.intro-locked > #scroll-progress,
+body.intro-locked > #bean-corner {
+  opacity: 0;
+  transition: opacity .9s ease .05s;
+}
+body.intro-revealing > nav,
+body.intro-revealing > section,
+body.intro-revealing > .ticker,
+body.intro-revealing > footer,
+body.intro-revealing > #scroll-progress,
+body.intro-revealing > #bean-corner {
+  opacity: 1;
+}
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  color: var(--ink);
+  font-family: 'IBM Plex Mono', monospace;
+  overflow: hidden;
+  pointer-events: auto;
+  user-select: none;
+  transition: opacity .9s ease;
+}
+#intro.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.intro-bg {
+  position: absolute; inset: 0;
+  background: var(--bg);
+  transition: background .3s;
+}
+.intro-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right,  color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  opacity: .55;
+}
+
+/* HUD corners */
+.intro-hud {
+  position: absolute;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  line-height: 1.8;
+  font-weight: 400;
+}
+.intro-hud .hud-line .dim,
+.intro-hud .dim { color: var(--muted); }
+.hud-tl { top: 22px; left: 28px; }
+.hud-tr { top: 22px; right: 28px; text-align: right; }
+.hud-bl { bottom: 82px; left: 28px; }
+.hud-br { bottom: 82px; right: 28px; text-align: right; }
+.intro-hud .hud-line { white-space: pre; }
+.intro-hud span[id^="hud-"] { color: var(--accent); }
+
+/* ---------- Scenes ---------- */
+.intro-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events: none;
+}
+.intro-scene.on { opacity: 1; }
+
+/* Scene 1 — Terminal */
+.term-window {
+  width: min(720px, 82vw);
+  background: color-mix(in srgb, var(--ink) 96%, var(--accent));
+  color: #ede8de;
+  border-radius: 8px;
+  box-shadow:
+    0 40px 80px -20px color-mix(in srgb, var(--ink) 60%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--ink) 100%, transparent);
+  overflow: hidden;
+  font-size: 14px;
+  transform: translateY(0) scale(1);
+  transition: transform .4s ease, opacity .4s ease;
+}
+.dark .term-window { background: #0c0a08; }
+.term-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: color-mix(in srgb, #000 35%, var(--ink));
+  border-bottom: 1px solid color-mix(in srgb, #fff 8%, transparent);
+}
+.term-head .dot { width: 10px; height: 10px; border-radius: 50%; }
+.term-head .dot.r { background: #ff5f56; }
+.term-head .dot.y { background: #ffbd2e; }
+.term-head .dot.g { background: #27c93f; }
+.term-head .term-title {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: #b8b2a6;
+  text-transform: uppercase;
+}
+.term-body {
+  padding: 22px 28px 30px;
+  min-height: 300px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #ede8de;
+}
+.t-line {
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.t-line.visible { opacity: 1; transform: none; }
+.t-line .pr  { color: var(--accent); margin-right: 8px; }
+.t-line .ok  { color: #4fb357; margin-right: 8px; }
+.t-line .dim { color: #857f74; }
+.t-line .cur {
+  display: inline-block;
+  width: .55em;
+  margin-left: 2px;
+  color: var(--accent);
+  animation: cur-blink 1s steps(2) infinite;
+}
+@keyframes cur-blink { 50% { opacity: 0; } }
+
+/* Scene 2 — Identity glyph */
+.glyph-wrap {
+  text-align: center;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+.glyph-meta {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.glyph-meta.top    { margin-bottom: 22px; }
+.glyph-meta.bot    { margin-top: 18px; }
+.glyph-at {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(120px, 22vw, 260px);
+  line-height: .9;
+  color: var(--ink);
+  letter-spacing: -.06em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .12em;
+}
+.glyph-at em { font-style: italic; }
+.glyph-at .glyph-dot {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400;
+  font-size: .35em;
+  color: var(--accent);
+  transform: translateY(-.7em);
+}
+.glyph-tag {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: .1em;
+  color: var(--ink2);
+}
+.glyph-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  margin: 18px auto 0;
+}
+
+/* Scene 3 — Life DAG (horizontal airflow style) */
+.scene-pipe { flex-direction: column; gap: 18px; }
+.pipe-title {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pipe-title .lbl-ok { color: #4fb357; }
+.pipe-svg {
+  width: min(1160px, 94vw);
+  height: auto;
+  color: var(--ink2);
+}
+.pipe-rules .rule { stroke: var(--border); stroke-width: 1; stroke-dasharray: 2 6; opacity: .7; }
+.pipe-rules .lane-label,
+.pipe-years text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  fill: var(--muted);
+}
+.pipe-years .yr { opacity: 0; transition: opacity .3s ease; }
+.pipe-years .yr.on { opacity: 1; }
+
+.pipe-nodes.airflow g.node rect {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0;
+  transform-origin: left center;
+  transform-box: fill-box;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.pipe-nodes.airflow g.node text {
+  fill: var(--ink);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  text-anchor: start;
+  opacity: 0;
+  transition: opacity .3s ease .08s;
+}
+.pipe-nodes.airflow g.node circle.status {
+  opacity: 0;
+  transition: opacity .3s ease .1s;
+}
+.pipe-nodes.airflow g.node.ok      circle.status { fill: #4fb357; }
+.pipe-nodes.airflow g.node.run     circle.status { fill: var(--accent); animation: dot-pulse 1.2s ease-in-out infinite; }
+.pipe-nodes.airflow g.node.pending circle.status { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 2 2; }
+.pipe-nodes.airflow g.node.run     rect { stroke: var(--accent); }
+.pipe-nodes.airflow g.node.pending rect { stroke-dasharray: 3 3; opacity: 1; }
+
+.pipe-nodes.airflow g.node.on rect   { opacity: 1; transform: scale(1); }
+.pipe-nodes.airflow g.node.on text   { opacity: 1; }
+.pipe-nodes.airflow g.node.on circle.status { opacity: 1; }
+.pipe-nodes.airflow g.node:not(.on) rect { transform: scale(.94); }
+
+@keyframes dot-pulse {
+  0%,100% { opacity: 1; transform: scale(1); transform-origin: center; }
+  50%     { opacity: .4; transform: scale(.7); }
+}
+
+.pipe-edges line.edge {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  transition: stroke-dashoffset .35s ease;
+  opacity: .65;
+}
+.pipe-edges line.edge.on { stroke-dashoffset: 0; }
+
+.packet {
+  fill: var(--accent);
+  opacity: 0;
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.pipe-legend {
+  display: flex;
+  gap: 20px;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 16px;
+}
+.pipe-legend .muted { color: var(--muted); }
+.pipe-legend .lg { display: inline-flex; align-items: center; gap: 7px; }
+.pipe-legend .lg-dot { width: 8px; height: 8px; border-radius: 50%; }
+.pipe-legend .lg-dot.ok      { background: #4fb357; }
+.pipe-legend .lg-dot.run     { background: var(--accent); }
+.pipe-legend .lg-dot.pending { background: transparent; border: 1px dashed var(--muted); }
+
+/* Progress bar bottom */
+.intro-progress {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, 70vw);
+}
+.intro-progress-bar {
+  height: 2px;
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+.intro-progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--p, 0%);
+  background: var(--accent);
+  transition: width .1s linear;
+}
+.intro-progress-ticks {
+  position: relative;
+  height: 6px;
+  margin-top: 2px;
+}
+.intro-progress-ticks .tick {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 6px;
+  background: color-mix(in srgb, var(--ink) 30%, transparent);
+}
+.intro-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Hint chevrons */
+.intro-hint {
+  position: absolute;
+  right: 28px;
+  bottom: 150px;
+  text-align: right;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  transition: opacity .3s;
+}
+.intro-hint.fade { opacity: 0; }
+.hint-chev {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--accent);
+}
+.hint-chev span {
+  animation: chev 1.6s ease-in-out infinite;
+  opacity: 0;
+}
+.hint-chev span:nth-child(1) { animation-delay: 0s; }
+.hint-chev span:nth-child(2) { animation-delay: .18s; }
+.hint-chev span:nth-child(3) { animation-delay: .36s; }
+@keyframes chev {
+  0%, 100% { opacity: 0; transform: translateY(-4px); }
+  40% { opacity: 1; transform: translateY(0); }
+}
+
+/* hide crosshair during intro */
+body.intro-locked #xhair { display: none; }
+body.intro-locked *, body.intro-locked *::before, body.intro-locked *::after {
+  cursor: default !important;
+}
