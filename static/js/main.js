@@ -94,7 +94,7 @@ function initCanvas() {
         spin: 0,
         speed: .22 + Math.random() * .3,
         len:   onGlyph ? 16 + Math.random() * 4 : 9 + Math.random() * 6,
-        alpha: onGlyph ? .28 : .04 + Math.random() * .04,
+        alpha: onGlyph ? .28 : .2 + Math.random() * .12,
         exploded: 0,
         onGlyph: onGlyph,
         revealDelay: onGlyph ? (bx / W) * 1400 : 600 + Math.random() * 1400
@@ -612,6 +612,58 @@ function beanBurst(e) {
   }, 55);
   window.addEventListener('scroll', stopBeans, { once: true });
 }
+
+/* ===== BEAN CORNER ===== */
+const beanCorner = document.getElementById('bean-corner');
+let beanHeroObs = null;
+
+function spawnWaterfallBean() {
+  const b = document.createElement('div');
+  b.className = 'bean-p';
+  b.textContent = '🫘';
+  const bRect = beanCorner.getBoundingClientRect();
+  const cx = bRect.left + bRect.width / 2;
+  const x = cx + (Math.random() - .5) * 10;
+  const sz = 7 + Math.random() * 5;
+  b.style.cssText = `position:fixed;font-size:${sz}px;left:${x}px;top:${bRect.bottom}px;z-index:9997;pointer-events:none;`;
+  document.body.appendChild(b);
+  const vx = (Math.random() - .5) * 1.2;
+  const spd = 11 + Math.random() * 7;
+  let px = x, py = bRect.bottom, rot = Math.random() * 360;
+  const fall = () => {
+    if (!b.isConnected) return;
+    py += spd; px += vx; rot += 5;
+    b.style.top = py + 'px'; b.style.left = px + 'px';
+    b.style.transform = `rotate(${rot}deg)`;
+    if (py < window.innerHeight + 30) requestAnimationFrame(fall); else b.remove();
+  };
+  requestAnimationFrame(fall);
+}
+
+beanCorner.addEventListener('click', e => {
+  e.stopPropagation();
+  if (beanActive) {
+    stopBeans();
+    beanCorner.classList.remove('raining');
+    if (beanHeroObs) { beanHeroObs.disconnect(); beanHeroObs = null; }
+    return;
+  }
+  beanActive = true;
+  beanCorner.classList.add('raining');
+  beanInterval = setInterval(() => {
+    if (!beanActive) return;
+    for (let j = 0; j < 8; j++) spawnWaterfallBean();
+  }, 35);
+  beanHeroObs = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) {
+      stopBeans();
+      beanCorner.classList.remove('raining');
+      beanHeroObs.disconnect();
+      beanHeroObs = null;
+    }
+  });
+  beanHeroObs.observe(document.getElementById('hero'));
+});
 
 /* ===== DEVELOPER EXCUSE ===== */
 async function loadExcuse() {
