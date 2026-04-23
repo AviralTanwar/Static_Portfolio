@@ -11,10 +11,13 @@
 </head>
 <body id="body">
 
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
 <!-- FULL-PAGE BACKGROUND CANVAS -->
 <canvas id="bg-canvas"></canvas>
 
-<!-- CURSOR -->
+<!-- SNIPER CURSOR -->
 <div id="xhair"></div>
 
 <!-- KONAMI EASTER EGG -->
@@ -33,14 +36,25 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-id" id="logo" onclick="logoClick()">Aviral Tanwar<sup title="Platform Owner · Solution Architect · Data Engineer"></sup></div>
-  <div class="nav-quote" id="nav-quote">// loading excuse...</div>
+  <div class="nav-id" id="logo" onclick="logoClick()" title="Aviral Tanwar · Platform Owner · Solution Architect · Data Engineer">
+    <span class="logo-at">AT</span>
+    <span class="logo-dot">·</span>
+    <sup class="logo-tag">PO / SA / DE</sup>
+  </div>
+  <div class="nav-quote" id="nav-quote">// it works on my machine.</div>
   <div class="nav-r">
     <a class="nav-link" href="#skills">Stack</a>
     <a class="nav-link" href="#experience">Work</a>
     <a class="nav-link" href="#projects">Projects</a>
     <a class="nav-link" href="#achievements">Awards</a>
+    <a class="nav-link" href="#feedback">Feedback</a>
     <a class="nav-link" href="#contact">Contact</a>
+    <a class="nav-resume" href="#" onclick="openResumeModal(event)" title="Download resume PDF">
+      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M6 1 V8 M3 5.5 L6 8.5 L9 5.5 M2 10.5 H10"/>
+      </svg>
+      <span>Resume</span>
+    </a>
     <div class="toggle-wrap">
       <span class="toggle-label active" id="lbl-light">Light</span>
       <label class="switch">
@@ -56,7 +70,7 @@
 </nav>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" data-chapter="00" data-chapter-name="Intro">
   <div class="hero-l">
     <div class="hero-eyebrow">Platform Owner · Solution Architect · Data Engineer</div>
     <h1 class="hero-name">Aviral<em>Tanwar.</em></h1>
@@ -73,6 +87,12 @@
     <div class="hero-btns">
       <a class="btn-a" href="#projects">View Work</a>
       <a class="btn-b" href="#contact">Say hello →</a>
+      <a class="btn-c" href="#" onclick="openResumeModal(event)">
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M6 1 V8 M3 5.5 L6 8.5 L9 5.5 M2 10.5 H10"/>
+        </svg>
+        Download Resume
+      </a>
     </div>
   </div>
 </section>
@@ -85,7 +105,6 @@
     <span>CI/CD · Jenkins</span><span class="hi"> · </span><span>ManEx Framework</span><span class="hi"> · </span>
     <span>Kafka in progress</span><span class="hi"> · </span><span>XBot Platform</span><span class="hi"> · </span>
     <span>DFOS Ecosystem</span><span class="hi"> · </span>
-    <!-- duplicate for seamless loop -->
     <span>Apache Airflow</span><span class="hi"> · </span><span>1M+ records/mo</span><span class="hi"> · </span>
     <span>Python · SQL</span><span class="hi"> · </span><span>GCP · Docker</span><span class="hi"> · </span>
     <span>CI/CD · Jenkins</span><span class="hi"> · </span><span>ManEx Framework</span><span class="hi"> · </span>
@@ -95,7 +114,7 @@
 </div>
 
 <!-- SKILLS -->
-<section id="skills">
+<section id="skills" data-chapter="01" data-chapter-name="Tech Stack">
   <div class="sec-label"><span class="sec-num">01</span> Tech Stack</div>
   <div class="skills-outer reveal">
     <div class="skills-intro">Tools I reach for when the <em>problem is real.</em></div>
@@ -158,7 +177,7 @@
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience">
+<section id="experience" data-chapter="02" data-chapter-name="Experience">
   <div class="sec-label"><span class="sec-num">02</span> Experience</div>
   <div class="exp exp-with-pipeline reveal">
     <div class="exp-main">
@@ -220,7 +239,7 @@
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" data-chapter="03" data-chapter-name="Projects">
   <div class="sec-label"><span class="sec-num">03</span> Projects</div>
   <div class="proj-grid reveal">
     <div class="proj-card" data-num="I">
@@ -273,24 +292,24 @@
 </section>
 
 <!-- ACHIEVEMENTS -->
-<section id="achievements">
+<section id="achievements" data-chapter="04" data-chapter-name="Achievements">
   <div class="sec-label"><span class="sec-num">04</span> Achievements</div>
   <div class="ach-grid reveal">
     <div class="ach-card">
       <div class="ach-head">
-        <div class="ach-logo">HR</div>
+        <div class="ach-logo">AT</div>
         <div class="ach-meta">
           <div class="ach-platform">HackerRank</div>
           <div class="ach-badge">Certificate</div>
         </div>
       </div>
       <div class="ach-title">Python &amp; Problem Solving</div>
-      <p class="ach-desc">Verified proficiency in Python programming and algorithmic problem-solving. Issued by HackerRank — a credential that validates core engineering fundamentals.</p>
+      <p class="ach-desc">Verified proficiency in Python programming and algorithmic problem-solving. A credential that validates core engineering fundamentals.</p>
       <a href="https://www.hackerrank.com/certificates" target="_blank" rel="noopener" class="ach-link">View Certificate ↗</a>
     </div>
     <div class="ach-card">
       <div class="ach-head">
-        <div class="ach-logo">HR</div>
+        <div class="ach-logo">AT</div>
         <div class="ach-meta">
           <div class="ach-platform">HackerRank</div>
           <div class="ach-badge">Solutions</div>
@@ -298,14 +317,39 @@
       </div>
       <div class="ach-title">100+ Problems Solved</div>
       <p class="ach-desc">Active competitive profile with solutions in Python across data structures, algorithms, SQL, and problem-solving domains. Consistent contributor.</p>
-      <a href="https://www.hackerrank.com/aviraltanwar" target="_blank" rel="noopener" class="ach-link">View HackerRank Profile ↗</a>
+      <a href="https://www.hackerrank.com/aviraltanwar" target="_blank" rel="noopener" class="ach-link">View Profile ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" data-chapter="05" data-chapter-name="Feedback">
+  <div class="sec-label"><span class="sec-num">05</span> Feedback</div>
+  <div class="fb-outer reveal">
+    <div class="fb-head">
+      <div class="fb-intro">What people <em>say.</em></div>
+      <div class="fb-received-badge">Received <span class="fb-count">1</span></div>
+    </div>
+    <div class="fb-cards-grid">
+      <article class="fb-card">
+        <div class="fb-card-top">
+          <div class="fb-avatar">DC</div>
+          <div class="fb-who">
+            <div class="fb-name">Divyansh Chawla <span class="fb-conn">· 1st</span></div>
+            <div class="fb-role">Python Developer @ DesignX</div>
+          </div>
+        </div>
+        <div class="fb-card-date">March 26, 2026 · reported to Aviral directly</div>
+        <p class="fb-body">I worked closely with Aviral Tanwar and he's someone you can really count on. He's strong with Python and Apache Airflow, and has handled building and managing data pipelines quite well. Whenever something tricky came up, he was usually the one figuring it out calmly and getting things done without overcomplicating it.</p>
+        <p class="fb-body">He's also easy to work with, always open to helping others and takes responsibility for his work. You don't have to chase him for updates, he just gets things done. Overall, I'd definitely recommend Aviral Tanwar if you're looking for someone solid and dependable on your team.</p>
+      </article>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="sec-label"><span class="sec-num">05</span> Contact</div>
+<section id="contact" data-chapter="06" data-chapter-name="Contact">
+  <div class="sec-label"><span class="sec-num">06</span> Contact</div>
   <div class="contact-grid reveal">
     <div>
       <div class="contact-big">Got a pipeline that needs fixing?<strong>Let's talk.</strong></div>
@@ -357,6 +401,32 @@
   <div>Noida, India · UTC+5:30</div>
   <div>built with precision · no templates</div>
 </footer>
+
+<!-- RESUME ROLE PICKER MODAL -->
+<div id="resume-modal">
+  <div class="rm-box">
+    <div class="rm-title">Download as</div>
+    <div class="rm-sub">Choose a focus — each version emphasises a different role.</div>
+    <div class="rm-options">
+      <button class="rm-opt" data-role="po">
+        <span class="rm-opt-tag">PO</span>
+        <span class="rm-opt-label">Platform Owner</span>
+        <span class="rm-opt-desc">Emphasis on ownership, orchestration, KPIs</span>
+      </button>
+      <button class="rm-opt" data-role="sa">
+        <span class="rm-opt-tag">SA</span>
+        <span class="rm-opt-label">Solution Architect</span>
+        <span class="rm-opt-desc">Emphasis on system design and infra decisions</span>
+      </button>
+      <button class="rm-opt" data-role="de">
+        <span class="rm-opt-tag">DE</span>
+        <span class="rm-opt-label">Data Engineer</span>
+        <span class="rm-opt-desc">Emphasis on pipelines, ETL, and data stack</span>
+      </button>
+    </div>
+    <button class="rm-close" onclick="closeResumeModal()">[esc] cancel</button>
+  </div>
+</div>
 
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
