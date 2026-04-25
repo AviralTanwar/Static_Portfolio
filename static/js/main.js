@@ -669,24 +669,11 @@ beanCorner.addEventListener('click', e => {
 async function loadExcuse() {
   const el = document.getElementById('nav-quote');
   if (!el) return;
-
-  // 1. Try Flask proxy (works when running locally)
   try {
-    const r = await fetch('/api/excuse');
-    if (r.ok) {
-      const d = await r.json();
-      if (d.excuse) { el.textContent = d.excuse; return; }
-    }
-  } catch {}
-
-  // 2. Fetch via CORS proxy for static/GitHub Pages hosting
-  try {
-    const proxy = 'https://corsproxy.io/?' + encodeURIComponent('https://developerexcuses.com/');
-    const r = await fetch(proxy);
-    const html = await r.text();
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    const excuse = doc.querySelector('a')?.textContent?.trim();
-    if (excuse) { el.textContent = excuse; }
+    const r = await fetch('https://excuser-three.vercel.app/v1/excuse/developer/');
+    const d = await r.json();
+    const excuse = d[0]?.excuse;
+    if (excuse) el.textContent = excuse;
   } catch {}
 }
 loadExcuse();
