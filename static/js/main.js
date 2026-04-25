@@ -360,31 +360,44 @@ function closeResumeModal() {
   document.getElementById('resume-modal').classList.remove('open');
 }
 
-function pickRole(role) {
+async function pickRole(role) {
   closeResumeModal();
-  const labels = { po: 'Platform Owner', sa: 'Solution Architect', de: 'Data Engineer' };
-  const label = labels[role] || 'Data Engineer';
 
   const toast = document.createElement('div');
   toast.style.cssText = `position:fixed;bottom:32px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;padding:12px 24px;z-index:9998;text-transform:uppercase;border-left:2px solid var(--accent);opacity:0;transition:opacity .25s, transform .25s;pointer-events:none;`;
-  toast.textContent = `↓ preparing ${label.toLowerCase()}.pdf`;
+  toast.textContent = '↓ fetching resume...';
   document.body.appendChild(toast);
   requestAnimationFrame(() => { toast.style.opacity = '1'; toast.style.transform = 'translate(-50%,0)'; });
 
-  const win = window.open('', '_blank');
-  if (!win) {
-    toast.textContent = '⚠ allow popups to download';
-    setTimeout(() => toast.remove(), 2400);
-    return;
-  }
-  win.document.write(resumeHTML(role));
-  win.document.close();
-  setTimeout(() => { try { win.focus(); win.print(); } catch(_) {} }, 400);
-  setTimeout(() => {
+  const hideToast = () => {
     toast.style.opacity = '0';
     toast.style.transform = 'translate(-50%,20px)';
     setTimeout(() => toast.remove(), 300);
-  }, 2000);
+  };
+
+  try {
+    const r = await fetch('static/data/resumes.json');
+    const resumes = await r.json();
+    const entry = resumes[role];
+
+    if (entry && entry.url) {
+      toast.textContent = `↓ downloading ${entry.label.toLowerCase()}.pdf`;
+      const a = document.createElement('a');
+      a.href = entry.url;
+      a.download = `Aviral_Tanwar_${entry.label.replace(/ /g, '_')}.pdf`;
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(hideToast, 2000);
+    } else {
+      toast.textContent = '⚠ resume link not available yet';
+      setTimeout(hideToast, 2400);
+    }
+  } catch {
+    toast.textContent = '⚠ could not load resume';
+    setTimeout(hideToast, 2400);
+  }
 }
 
 document.querySelectorAll('.rm-opt').forEach(btn => {
@@ -669,11 +682,27 @@ beanCorner.addEventListener('click', e => {
 async function loadExcuse() {
   const el = document.getElementById('nav-quote');
   if (!el) return;
+
+  const parseExcuse = html => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.querySelector('a')?.textContent?.trim() || null;
+  };
+
+  // 1. Flask proxy (local dev)
   try {
-    const r = await fetch('https://excuser-three.vercel.app/v1/excuse/developer/');
-    const d = await r.json();
-    const excuse = d[0]?.excuse;
-    if (excuse) el.textContent = excuse;
+    const r = await fetch('/api/excuse');
+    if (r.ok) {
+      const d = await r.json();
+      if (d.excuse) { el.textContent = d.excuse; return; }
+    }
+  } catch {}
+
+  // 2. corsproxy.io → developerexcuses.com (GitHub Pages / static)
+  try {
+    const r = await fetch('https://corsproxy.io/?' + encodeURIComponent('http://developerexcuses.com/'));
+    const html = await r.text();
+    const excuse = parseExcuse(html);
+    if (excuse) { el.textContent = excuse; return; }
   } catch {}
 }
 loadExcuse();
