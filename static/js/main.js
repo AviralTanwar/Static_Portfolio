@@ -626,84 +626,33 @@ function beanBurst(e) {
   window.addEventListener('scroll', stopBeans, { once: true });
 }
 
-/* ===== BEAN CORNER ===== */
-const beanCorner = document.getElementById('bean-corner');
-let beanHeroObs = null;
-
-function spawnWaterfallBean() {
-  const b = document.createElement('div');
-  b.className = 'bean-p';
-  b.textContent = '🫘';
-  const bRect = beanCorner.getBoundingClientRect();
-  const cx = bRect.left + bRect.width / 2;
-  const x = cx + (Math.random() - .5) * 10;
-  const sz = 7 + Math.random() * 5;
-  b.style.cssText = `position:fixed;font-size:${sz}px;left:${x}px;top:${bRect.bottom}px;z-index:9997;pointer-events:none;`;
-  document.body.appendChild(b);
-  const vx = (Math.random() - .5) * 1.2;
-  const spd = 11 + Math.random() * 7;
-  let px = x, py = bRect.bottom, rot = Math.random() * 360;
-  const fall = () => {
-    if (!b.isConnected) return;
-    py += spd; px += vx; rot += 5;
-    b.style.top = py + 'px'; b.style.left = px + 'px';
-    b.style.transform = `rotate(${rot}deg)`;
-    if (py < window.innerHeight + 30) requestAnimationFrame(fall); else b.remove();
-  };
-  requestAnimationFrame(fall);
-}
-
-beanCorner.addEventListener('click', e => {
-  e.stopPropagation();
-  if (beanActive) {
-    stopBeans();
-    beanCorner.classList.remove('raining');
-    if (beanHeroObs) { beanHeroObs.disconnect(); beanHeroObs = null; }
-    return;
-  }
-  beanActive = true;
-  beanCorner.classList.add('raining');
-  beanInterval = setInterval(() => {
-    if (!beanActive) return;
-    for (let j = 0; j < 8; j++) spawnWaterfallBean();
-  }, 35);
-  beanHeroObs = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) {
-      stopBeans();
-      beanCorner.classList.remove('raining');
-      beanHeroObs.disconnect();
-      beanHeroObs = null;
-    }
-  });
-  beanHeroObs.observe(document.getElementById('hero'));
-});
 
 /* ===== DEVELOPER EXCUSE ===== */
 async function loadExcuse() {
   const el = document.getElementById('nav-quote');
+  console.log('[excuse] element:', el);
   if (!el) return;
 
-  const parseExcuse = html => {
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.querySelector('a')?.textContent?.trim() || null;
-  };
-
-  // 1. Flask proxy (local dev)
   try {
     const r = await fetch('/api/excuse');
-    if (r.ok) {
-      const d = await r.json();
-      if (d.excuse) { el.textContent = d.excuse; return; }
-    }
-  } catch {}
+    console.log('[excuse] status:', r.status);
+    const d = await r.json();
+    console.log('[excuse] data:', d);
+    if (d.excuse) { el.textContent = d.excuse; return; }
+  } catch (e) {
+    console.warn('[excuse] flask failed:', e);
+  }
 
-  // 2. corsproxy.io → developerexcuses.com (GitHub Pages / static)
   try {
     const r = await fetch('https://corsproxy.io/?' + encodeURIComponent('http://developerexcuses.com/'));
     const html = await r.text();
-    const excuse = parseExcuse(html);
-    if (excuse) { el.textContent = excuse; return; }
-  } catch {}
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const excuse = doc.querySelector('a')?.textContent?.trim();
+    console.log('[excuse] proxy result:', excuse);
+    if (excuse) { el.textContent = excuse; }
+  } catch (e) {
+    console.warn('[excuse] proxy failed:', e);
+  }
 }
 loadExcuse();
 
