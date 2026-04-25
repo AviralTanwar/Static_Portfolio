@@ -1009,6 +1009,18 @@ footer {
   letter-spacing: .5px;
   color: var(--muted);
 }
+.rm-opt[data-role="cover"] {
+  border-top: 2px solid var(--border);
+  margin-top: 6px;
+}
+.rm-opt[data-role="cover"] .rm-opt-tag {
+  background: var(--ink);
+  color: var(--bg);
+}
+.rm-opt[data-role="cover"]:hover .rm-opt-tag {
+  background: var(--accent);
+}
+
 .rm-close {
   background: none;
   border: 1px solid var(--border);

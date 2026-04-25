@@ -132,16 +132,18 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
 
 /* — Tablet portrait (768px) — */
 @media (max-width: 768px) {
-  /* Nav */
-  nav { padding: 12px 20px; }
+  /* Nav — logo left, controls right */
+  nav    { padding: 12px 20px; }
+  .nav-r { margin-left: auto; gap: 12px; }
   .nav-link  { display: none; }
   .nav-quote { display: none; }
 
   /* Hero */
   #hero { padding: 88px 20px 50px; min-height: auto; }
+  .hero-l { max-width: 100%; }
   .hero-name { font-size: clamp(48px, 12vw, 72px); letter-spacing: -1.5px; }
   .hero-desc { font-size: 14px; }
-  .hero-btns { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .hero-btns { flex-direction: column; align-items: stretch; gap: 10px; }
   .btn-a, .btn-b { width: 100%; text-align: center; display: block; }
   .btn-c { width: 100%; justify-content: center; }
 
@@ -189,6 +191,28 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .intro-theme-btn { font-size: 9px; padding: 6px 12px; top: 18px; }
 }
 
+/* — Large phone / small tablet (640px) — */
+@media (max-width: 640px) {
+  /* Fix eyebrow wrapping: at this width the text fits on 1 line at 8px */
+  .hero-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  /* Life DAG SVG is too wide — hide, keep title */
+  .pipe-svg { display: none; }
+  .scene-pipe .pipe-title { font-size: 10px; }
+
+  /* Resume modal: compact for phones */
+  .rm-box   { padding: 28px 22px 24px; }
+  .rm-title { font-size: 22px; }
+  .rm-sub   { font-size: 10px; }
+  .rm-opt   { padding: 14px 16px; gap: 14px; }
+  .rm-opt-desc { display: none; }
+}
+
 /* — Mobile (480px) — */
 @media (max-width: 480px) {
   /* Nav */
@@ -199,34 +223,52 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .bean-seed { display: none; }
   .nav-resume { padding: 7px 9px; }
   .nav-resume span { display: none; }
+  .nav-r { gap: 10px; }
 
   /* Hero */
-  #hero { padding: 80px 16px 40px; }
-  .hero-eyebrow { font-size: 9px; letter-spacing: 2px; }
-  .hero-name    { font-size: clamp(40px, 13vw, 60px); }
-  .hero-title   { font-size: 11px; line-height: 1.9; }
-  .hero-desc    { font-size: 13px; line-height: 1.9; }
+  #hero { padding: 76px 16px 40px; }
+  .hero-eyebrow { font-size: 7.5px; letter-spacing: 0.3px; }
+  .hero-name    { font-size: clamp(38px, 13vw, 58px); letter-spacing: -1px; }
+  .hero-title   { font-size: 10px; letter-spacing: 1.5px; line-height: 1.85; }
+  .hero-desc    { font-size: 13px; line-height: 1.85; margin-bottom: 28px; }
   .hero-btns    { gap: 8px; }
+  .btn-a, .btn-b { font-size: 9px; padding: 11px 20px; }
+  .btn-c         { font-size: 9px; padding: 11px 16px; }
 
   /* Sections */
-  section { padding: 48px 16px; }
+  section    { padding: 44px 16px; }
+  .sec-label { margin-bottom: 20px; font-size: 10px; }
 
   /* Experience */
-  .exp-pts li  { font-size: 13px; padding: 10px 0 10px 18px; }
-  .kpi         { padding: 14px 12px; }
-  .kpi-val     { font-size: clamp(22px, 8vw, 36px); }
+  .exp-pts li    { font-size: 13px; padding: 10px 0 10px 18px; }
+  .kpi           { padding: 14px 12px; }
+  .kpi-val       { font-size: clamp(22px, 8vw, 36px); }
   #experience h3 { font-size: clamp(18px, 5vw, 24px); }
+  .exp-meta-line { gap: 6px; }
 
   /* Projects */
-  .proj-card  { padding: 20px; }
-  .proj-title { font-size: 20px; }
+  .proj-card        { padding: 20px; }
+  .proj-title       { font-size: 20px; }
+  .proj-card::before { font-size: 60px; bottom: -4px; }
 
   /* Achievements */
-  .ach-card { padding: 22px; }
+  .ach-card  { padding: 22px; }
   .ach-title { font-size: 16px; }
+  .ach-head  { gap: 10px; }
+  .ach-logo  { width: 36px; height: 36px; font-size: 13px; }
+
+  /* Feedback */
+  .fb-card     { padding: 20px 16px 16px; }
+  .fb-card-top { gap: 10px; }
+  .fb-avatar   { width: 40px; height: 40px; font-size: 14px; }
+  .fb-body     { font-size: 13px; }
 
   /* Contact */
-  .c-link { padding: 16px 0; }
+  .c-link      { padding: 14px 0; }
+  .c-link-icon { width: 30px; height: 30px; margin-right: 12px; }
+
+  /* Footer */
+  footer { padding: 14px 16px; gap: 6px; }
 
   /* Intro */
   .hud-tr { display: none; }
@@ -238,14 +280,35 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .intro-hint  { right: 14px; bottom: 110px; }
   .intro-theme-btn { font-size: 8px; padding: 5px 10px; letter-spacing: .1em; }
   .scene-pipe .pipe-legend { font-size: 9px; gap: 12px; }
+
+  /* Resume modal */
+  .rm-box   { padding: 22px 18px 20px; }
+  .rm-title { font-size: 20px; }
+  .rm-opt   { padding: 12px 14px; gap: 10px; }
+  .rm-close { padding: 8px 16px; font-size: 8px; }
 }
 
-/* — Intro pipe SVG scaling — */
+/* — Very small phones (≤360px) — */
+@media (max-width: 360px) {
+  nav { padding: 8px 12px; }
+  .logo-at { font-size: 16px; }
+  #hero { padding: 68px 12px 32px; }
+  .hero-eyebrow { font-size: 7px; letter-spacing: 0; }
+  .hero-name { font-size: clamp(32px, 14vw, 46px); }
+  section { padding: 36px 12px; }
+  .btn-a, .btn-b, .btn-c { font-size: 8.5px; padding: 10px 14px; }
+  .kpi { padding: 10px 8px; }
+  .kpi-val { font-size: clamp(18px, 9vw, 30px); }
+  .kpi-lab { font-size: 9px; }
+  .proj-card, .ach-card { padding: 16px; }
+  .proj-title { font-size: 18px; }
+  .fb-card { padding: 16px 12px; }
+  .rm-box { padding: 18px 14px 16px; }
+  footer { padding: 12px; }
+}
+
+/* — Intro pipe SVG: overflow on mid sizes — */
 @media (max-width: 900px) {
   .scene-pipe { padding: 0 8px; }
   .pipe-svg { overflow-x: auto; }
-}
-@media (max-width: 640px) {
-  .pipe-svg { display: none; }
-  .scene-pipe .pipe-title { font-size: 10px; }
 }

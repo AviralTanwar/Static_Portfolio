@@ -1,14 +1,26 @@
 {
   "po": {
+    "tag": "PO",
     "label": "Platform Owner",
+    "desc": "Emphasis on ownership, orchestration, KPIs",
     "url": "https://drive.google.com/uc?export=download&id=18fwg93W6UAPZFKE8TNKrr20V7zUK1MuP"
   },
   "sa": {
+    "tag": "SA",
     "label": "Solution Architect",
+    "desc": "Emphasis on system design and infra decisions",
     "url": null
   },
   "de": {
+    "tag": "DE",
     "label": "Data Engineer",
+    "desc": "Emphasis on pipelines, ETL, and data stack",
     "url": "https://drive.google.com/uc?export=download&id=1BABwAFpSbLJ_l9-gLeyt6KvWXTInDctg"
+  },
+  "cover": {
+    "tag": "CL",
+    "label": "Cover Letter",
+    "desc": "Generated from portfolio — print or save as PDF",
+    "url": null
   }
 }

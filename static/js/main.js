@@ -351,17 +351,218 @@ const obs = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 /* ===== RESUME ROLE PICKER MODAL ===== */
-function openResumeModal(e) {
+async function openResumeModal(e) {
   if (e) e.preventDefault();
-  document.getElementById('resume-modal').classList.add('open');
+  const modal = document.getElementById('resume-modal');
+  const container = modal.querySelector('.rm-options');
+
+  if (!container.hasChildNodes()) {
+    try {
+      const r = await fetch('static/data/resumes.json');
+      const resumes = await r.json();
+      container.innerHTML = Object.entries(resumes).map(([role, entry]) => `
+        <button class="rm-opt" data-role="${role}">
+          <span class="rm-opt-tag">${entry.tag}</span>
+          <span class="rm-opt-label">${entry.label}</span>
+          <span class="rm-opt-desc">${entry.desc}</span>
+        </button>`).join('');
+      container.querySelectorAll('.rm-opt').forEach(btn => {
+        btn.addEventListener('click', () => pickRole(btn.dataset.role));
+      });
+    } catch {
+      container.innerHTML = '<p style="color:var(--accent);font-size:11px;">Could not load options.</p>';
+    }
+  }
+
+  modal.classList.add('open');
 }
 
 function closeResumeModal() {
   document.getElementById('resume-modal').classList.remove('open');
 }
 
+function generateCoverLetter() {
+  const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Cover Letter — Aviral Tanwar</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      background: #fff;
+      color: #1a1714;
+      padding: 56px 72px;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 12.5px;
+      line-height: 1.85;
+    }
+    .cl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 18px;
+      margin-bottom: 32px;
+      border-bottom: 1.5px solid #b83a0c;
+    }
+    .cl-name {
+      font-family: 'Fraunces', serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cl-name em { color: #b83a0c; font-style: italic; }
+    .cl-roles {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #857f74;
+    }
+    .cl-contact {
+      text-align: right;
+      font-size: 11px;
+      color: #4a4540;
+      line-height: 1.7;
+    }
+    .cl-date { font-size: 10px; color: #857f74; letter-spacing: 1px; margin-bottom: 24px; }
+    .cl-subject {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b83a0c;
+      border-left: 2px solid #b83a0c;
+      padding-left: 10px;
+      margin-bottom: 28px;
+    }
+    .cl-salutation { font-weight: 500; margin-bottom: 20px; }
+    .cl-body p { margin-bottom: 16px; color: #1a1714; }
+    .cl-body strong { font-weight: 500; }
+    .cl-sign { margin-top: 32px; }
+    .cl-sign-name {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+    .cl-sign-role {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #857f74;
+      margin-top: 3px;
+    }
+    .cl-sign-links {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 11px;
+      color: #4a4540;
+    }
+    .cl-sign-links a {
+      color: #b83a0c;
+      text-decoration: none;
+      border-bottom: 1px solid #b83a0c;
+      padding-bottom: 1px;
+      width: fit-content;
+    }
+    .cl-print-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #b83a0c;
+      color: #fff;
+      border: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .cl-print-btn:hover { background: #1a1714; }
+    @media print {
+      body { padding: 36px 48px; }
+      .cl-print-btn { display: none; }
+      @page { margin: 0; size: A4 portrait; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cl-header">
+    <div>
+      <div class="cl-name">Aviral<em>Tanwar.</em></div>
+      <div class="cl-roles">Platform Owner · Solution Architect · Data Engineer</div>
+    </div>
+    <div class="cl-contact">
+      aviraltanwar@gmail.com<br/>
+      +91-9971886273<br/>
+      Noida, Uttar Pradesh, India
+    </div>
+  </div>
+
+  <div class="cl-date">${today}</div>
+
+  <div class="cl-subject">Application — Platform Owner / Data Engineer / Solution Architect</div>
+
+  <div class="cl-salutation">Dear Hiring Manager,</div>
+
+  <div class="cl-body">
+    <p>
+      I am a <strong>Data Engineer and Platform Owner</strong> with two years of production experience designing, building, and owning data infrastructure at scale. As <strong>Associate Manager at NRV DesignX Pvt. Ltd.</strong>, I architect and maintain the XBot platform — an Apache Airflow-based orchestration system that processes over <strong>1 million IoT records per month</strong> across 5+ factory sites — while leading a team of Python developers toward zero-downtime, fully observable data operations.
+    </p>
+    <p>
+      My progression from intern to Associate Manager within two years reflects the ownership mindset I bring to every engagement. As Senior Developer, I spearheaded data transformation pipelines improving throughput by 30%, integrated third-party REST APIs with OAuth and JWT authentication, and designed a scalable partitioning framework for 3 GB+ MySQL datasets. As Platform Owner, I took full accountability for the system lifecycle: CI/CD deployments via Jenkins and GitHub, centralized log management at 100K+ entries per month on GCP Cloud Storage, and 5,000+ automated notification alerts every month — all with 40% less manual effort and 70% fewer cross-team follow-ups.
+    </p>
+    <p>
+      My technical depth spans <strong>Apache Airflow</strong>, <strong>Python</strong>, <strong>MySQL</strong>, <strong>GCP Compute and Cloud Storage</strong>, <strong>Docker</strong>, and <strong>Jenkins</strong>. I designed ManEx v3, a low-code automation engine with 15+ reusable components that allows non-engineers to trigger full ETL workflows via JSON configuration. I also built incremental ETL pipelines with historical snapshots across 12+ tables, enabling time-travel analytics and 100% data reproducibility. I am currently architecting a <strong>Kafka streaming pipeline</strong> to shift the platform from scheduled batch to real-time IoT telemetry ingestion.
+    </p>
+    <p>
+      Prior to NRV DesignX, I completed an AI/ML research internship at <strong>IIT Jodhpur</strong>, where I built a predictive pricing model achieving 90% accuracy using logistic regression and random forest, automated multi-source data collection with Selenium and BeautifulSoup, and applied scikit-learn for feature engineering and cross-validation. I hold a <strong>B.Tech in Computer Science and Engineering from Jaypee Institute of Information Technology</strong> (2020–2024).
+    </p>
+    <p>
+      I am the kind of engineer who finds the root cause at 3am rather than papering over the symptom. I would welcome the opportunity to discuss how my experience in workflow orchestration, platform ownership, and data infrastructure aligns with what you are building. Thank you for your time and consideration.
+    </p>
+  </div>
+
+  <div class="cl-sign">
+    Sincerely,
+    <div class="cl-sign-name">Aviral Tanwar</div>
+    <div class="cl-sign-role">Associate Manager · Platform Owner · Data Engineer</div>
+    <div class="cl-sign-links">
+      <span>aviraltanwar@gmail.com</span>
+      <span>+91-9971886273</span>
+      <a href="https://aviral-tanwar.github.io/Static_Portfolio" target="_blank">aviral-tanwar.github.io/Static_Portfolio</a>
+    </div>
+  </div>
+
+  <button class="cl-print-btn" onclick="window.print()">↓ Save as PDF</button>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const win = window.open(url, '_blank', 'width=860,height=1100,left=100,top=60');
+  if (win) win.focus();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+
 async function pickRole(role) {
   closeResumeModal();
+
+  if (role === 'cover') {
+    generateCoverLetter();
+    return;
+  }
 
   const toast = document.createElement('div');
   toast.style.cssText = `position:fixed;bottom:32px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;padding:12px 24px;z-index:9998;text-transform:uppercase;border-left:2px solid var(--accent);opacity:0;transition:opacity .25s, transform .25s;pointer-events:none;`;
@@ -399,10 +600,6 @@ async function pickRole(role) {
     setTimeout(hideToast, 2400);
   }
 }
-
-document.querySelectorAll('.rm-opt').forEach(btn => {
-  btn.addEventListener('click', () => pickRole(btn.dataset.role));
-});
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeResumeModal();
