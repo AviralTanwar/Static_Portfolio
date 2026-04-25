@@ -1,6 +1,22 @@
 /* =========================================================
    INTRO — scroll-scrubbed boot sequence
    ========================================================= */
+
+function introToggleTheme() {
+  const body   = document.body;
+  const isDark = body.classList.toggle('dark');
+  const sw     = document.getElementById('theme-switch');
+  if (sw) sw.checked = isDark;
+  const lbl  = document.getElementById('intro-theme-label');
+  const icon = document.getElementById('intro-theme-icon');
+  if (lbl)  lbl.textContent  = isDark ? 'Light mode' : 'Dark mode';
+  if (icon) icon.textContent = isDark ? '☀' : '☾';
+  const lblL = document.getElementById('lbl-light');
+  const lblD = document.getElementById('lbl-dark');
+  if (lblL) lblL.classList.toggle('active', !isDark);
+  if (lblD) lblD.classList.toggle('active', isDark);
+}
+
 (function () {
   const intro    = document.getElementById('intro');
   const body     = document.body;
@@ -65,13 +81,13 @@
   function onKey(e) {
     if (finished) return;
     const k = e.key;
-    if (k === 'Escape') { target = 1; return; }
+    if (k === 'Escape') { finish(); return; }
     if (k === 'ArrowDown' || k === 'PageDown' || k === ' ') {
       consume(e); target = clamp(target + STEP * 4, 0, 1);
     } else if (k === 'ArrowUp' || k === 'PageUp') {
       consume(e); target = clamp(target - STEP * 4, 0, 1);
     } else if (k === 'End') {
-      consume(e); target = 1;
+      consume(e); finish();
     } else if (k === 'Home') {
       consume(e); target = 0;
     }
@@ -79,8 +95,9 @@
 
   function onClick(e) {
     if (finished) return;
+    if (e.target.closest('#intro-theme-btn')) return;
     e.stopPropagation();
-    target = 1;
+    finish();
   }
 
   window.addEventListener('wheel',      onWheel,      { passive: false, capture: true });

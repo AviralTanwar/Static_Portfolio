@@ -72,6 +72,5 @@
 }
 
 /* ===== Parallax hero ===== */
-#hero {
-  will-change: transform;
-}
+#hero { overflow: hidden; }
+#hero .hero-l { will-change: transform; }

@@ -1,0 +1,251 @@
+/* =========================================================
+   READABILITY OVERRIDES — larger fonts, better density
+   ========================================================= */
+
+/* — Nav — */
+nav { z-index: 200; }
+#hero { padding-top: 120px; }
+.hero-btns { position: relative; z-index: 1; }
+.nav-link   { font-size: 11px; }
+.nav-quote  { font-size: 13px; }
+
+/* — Hero — */
+.hero-eyebrow { font-size: 11px; letter-spacing: 2.5px; }
+.hero-name    { font-size: clamp(62px, 7.5vw, 100px); }
+.hero-title   { font-size: 13px; letter-spacing: 2px; line-height: 2.1; }
+.hero-desc    { font-size: 16px; line-height: 2; }
+
+/* — Section labels — */
+.sec-label { font-size: 13px; letter-spacing: 2px; margin-bottom: 48px; }
+.sec-num   { font-size: 13px; }
+
+/* — Skills — */
+.skills-intro { font-size: 24px; margin-bottom: 32px; }
+.sk-row  { grid-template-columns: 150px 1fr; gap: 0 24px; }
+.sk-cat  { font-size: 12px; letter-spacing: 1.5px; padding: 4px 16px; align-self: start; }
+.sk-tag  { font-size: 12px; padding: 7px 16px; letter-spacing: .5px; }
+.sk-tags { gap: 10px; padding: 4px 18px; }
+
+/* — Experience — */
+.exp-meta-line  { font-size: 12px; margin-bottom: 18px; gap: 10px; }
+#experience h3  { font-size: clamp(20px, 2.5vw, 30px); margin-bottom: 20px; }
+.exp-kpis       { gap: 2px; margin-bottom: 32px; }
+.kpi            { padding: 20px 22px; }
+.kpi-val        { font-size: clamp(30px, 4vw, 48px); }
+.kpi-lab        { font-size: 11px; margin-top: 6px; }
+.exp-pts        { gap: 0; }
+.exp-pts li     { font-size: 15px; line-height: 1.85; padding: 14px 0 14px 28px; border-bottom: 1px solid var(--subtle); }
+.exp-pts li::before { font-size: 11px; margin-top: 3px; }
+
+/* — Education — */
+.edu-date   { font-size: 11px; }
+.edu-inst   { font-size: 16px; }
+.edu-degree { font-size: 20px; }
+.edu-detail { font-size: 14px; line-height: 2; }
+.edu-tag    { font-size: 10px; }
+
+/* — Projects — */
+.proj-title  { font-size: clamp(22px, 3vw, 32px); }
+.proj-desc   { font-size: 14px; line-height: 1.95; }
+.proj-chip   { font-size: 10px; padding: 5px 11px; letter-spacing: 1px; }
+.proj-status { font-size: 10px; letter-spacing: 1.5px; }
+
+/* — Achievements — */
+.ach-title    { font-size: 18px; }
+.ach-desc     { font-size: 13px; line-height: 2; }
+.ach-platform { font-size: 12px; }
+
+/* — Feedback — */
+.fb-intro    { font-size: clamp(26px, 3.5vw, 38px); }
+.fb-name     { font-size: 15px; }
+.fb-role     { font-size: 12px; }
+.fb-body     { font-size: 14px; line-height: 2.05; }
+.fb-card-date { font-size: 10px; }
+
+/* — Contact — */
+.contact-big  { font-size: clamp(28px, 3.5vw, 48px); }
+.contact-note { font-size: 13px; line-height: 2; }
+.c-link-type  { font-size: 9px; }
+.c-link-label { font-size: 14px; }
+
+/* — Footer — */
+footer      { font-size: 10px; letter-spacing: 1.2px; }
+.footer-sig { font-size: 15px; }
+
+/* — Intro theme toggle button — */
+.intro-theme-btn {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+  z-index: 10;
+  user-select: none;
+  white-space: nowrap;
+}
+.intro-theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.intro-theme-btn .tb-icon { font-size: 12px; opacity: .7; }
+
+/* =========================================================
+   RESPONSIVE — Mobile, Tablet, All Laptop Sizes
+   ========================================================= */
+
+/* — Extra large screens (1400px+) — */
+@media (min-width: 1400px) {
+  nav     { padding: 16px 64px; }
+  #hero   { padding: 130px 64px 80px; }
+  section { padding: 100px 64px; }
+}
+
+/* — Large laptops (1280px) — */
+@media (max-width: 1280px) {
+  .nav-quote { max-width: 220px; font-size: 12px; }
+}
+
+/* — Laptops (1024px) — */
+@media (max-width: 1024px) {
+  nav     { padding: 14px 28px; }
+  #hero   { padding: 110px 28px 60px; }
+  section { padding: 72px 28px; }
+  .skills-outer { grid-template-columns: 1fr; gap: 32px; }
+  .exp-with-pipeline { grid-template-columns: 1fr; }
+  .exp-pipeline { display: none; }
+  .contact-grid { gap: 48px; }
+  .pipe-svg { width: min(900px, 92vw); }
+}
+
+/* — Tablet portrait (768px) — */
+@media (max-width: 768px) {
+  /* Nav */
+  nav { padding: 12px 20px; }
+  .nav-link  { display: none; }
+  .nav-quote { display: none; }
+
+  /* Hero */
+  #hero { padding: 88px 20px 50px; min-height: auto; }
+  .hero-name { font-size: clamp(48px, 12vw, 72px); letter-spacing: -1.5px; }
+  .hero-desc { font-size: 14px; }
+  .hero-btns { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .btn-a, .btn-b { width: 100%; text-align: center; display: block; }
+  .btn-c { width: 100%; justify-content: center; }
+
+  /* Sections */
+  section    { padding: 56px 20px; }
+  .sec-label { margin-bottom: 28px; }
+  .skills-outer { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Skills rows */
+  .sk-row { grid-template-columns: 1fr; border-bottom: 1px solid var(--border); border-right: none; }
+  .sk-cat { border-right: none; border-bottom: 1px solid var(--border); padding: 10px 14px; }
+  .sk-tags { padding: 10px 14px 14px; }
+
+  /* Experience KPIs */
+  .exp-kpis { flex-wrap: wrap; }
+  .kpi { flex: 1 1 calc(50% - 2px); min-width: 0; }
+
+  /* Education */
+  .edu-item { grid-template-columns: 1fr; gap: 12px; }
+
+  /* Projects / Achievements */
+  .proj-grid { grid-template-columns: 1fr; }
+  .ach-grid  { grid-template-columns: 1fr; }
+  .proj-card { padding: 24px; }
+  .ach-card  { padding: 28px; }
+
+  /* Feedback */
+  .fb-cards-grid { grid-template-columns: 1fr; }
+  .fb-card  { padding: 24px 20px 20px; }
+  .fb-head  { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  /* Contact */
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Footer */
+  footer { padding: 18px 20px; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+
+  /* Intro */
+  .hud-bl, .hud-br { display: none; }
+  .hud-tl, .hud-tr { font-size: 9px; line-height: 1.6; }
+  .pipe-svg { width: 100%; }
+  .glyph-at { font-size: clamp(80px, 22vw, 160px); }
+  .term-body { min-height: 180px; font-size: 12px; padding: 16px 18px 20px; }
+  .intro-progress { width: min(90vw, 420px); }
+  .intro-theme-btn { font-size: 9px; padding: 6px 12px; top: 18px; }
+}
+
+/* — Mobile (480px) — */
+@media (max-width: 480px) {
+  /* Nav */
+  nav { padding: 10px 16px; }
+  .logo-tag { display: none; }
+  .logo-dot { display: none; }
+  .toggle-label { display: none; }
+  .bean-seed { display: none; }
+  .nav-resume { padding: 7px 9px; }
+  .nav-resume span { display: none; }
+
+  /* Hero */
+  #hero { padding: 80px 16px 40px; }
+  .hero-eyebrow { font-size: 9px; letter-spacing: 2px; }
+  .hero-name    { font-size: clamp(40px, 13vw, 60px); }
+  .hero-title   { font-size: 11px; line-height: 1.9; }
+  .hero-desc    { font-size: 13px; line-height: 1.9; }
+  .hero-btns    { gap: 8px; }
+
+  /* Sections */
+  section { padding: 48px 16px; }
+
+  /* Experience */
+  .exp-pts li  { font-size: 13px; padding: 10px 0 10px 18px; }
+  .kpi         { padding: 14px 12px; }
+  .kpi-val     { font-size: clamp(22px, 8vw, 36px); }
+  #experience h3 { font-size: clamp(18px, 5vw, 24px); }
+
+  /* Projects */
+  .proj-card  { padding: 20px; }
+  .proj-title { font-size: 20px; }
+
+  /* Achievements */
+  .ach-card { padding: 22px; }
+  .ach-title { font-size: 16px; }
+
+  /* Contact */
+  .c-link { padding: 16px 0; }
+
+  /* Intro */
+  .hud-tr { display: none; }
+  .term-window { width: 95vw; }
+  .term-body   { font-size: 11px; padding: 12px 14px 16px; min-height: 150px; }
+  .glyph-at    { font-size: clamp(60px, 20vw, 100px); }
+  .glyph-tag   { font-size: 11px; }
+  .intro-progress { width: 88vw; bottom: 24px; }
+  .intro-hint  { right: 14px; bottom: 110px; }
+  .intro-theme-btn { font-size: 8px; padding: 5px 10px; letter-spacing: .1em; }
+  .scene-pipe .pipe-legend { font-size: 9px; gap: 12px; }
+}
+
+/* — Intro pipe SVG scaling — */
+@media (max-width: 900px) {
+  .scene-pipe { padding: 0 8px; }
+  .pipe-svg { overflow-x: auto; }
+}
+@media (max-width: 640px) {
+  .pipe-svg { display: none; }
+  .scene-pipe .pipe-title { font-size: 10px; }
+}

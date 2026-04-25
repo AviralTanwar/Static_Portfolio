@@ -667,14 +667,27 @@ beanCorner.addEventListener('click', e => {
 
 /* ===== DEVELOPER EXCUSE ===== */
 async function loadExcuse() {
+  const el = document.getElementById('nav-quote');
+  if (!el) return;
+
+  // 1. Try Flask proxy (works when running locally)
   try {
     const r = await fetch('/api/excuse');
-    const d = await r.json();
-    const el = document.getElementById('nav-quote');
-    if (el && d.excuse) el.textContent = d.excuse;
-  } catch {
-    /* keep the default placeholder text */
-  }
+    if (r.ok) {
+      const d = await r.json();
+      if (d.excuse) { el.textContent = d.excuse; return; }
+    }
+  } catch {}
+
+  // 2. Fetch via CORS proxy for static/GitHub Pages hosting
+  try {
+    const proxy = 'https://corsproxy.io/?' + encodeURIComponent('https://developerexcuses.com/');
+    const r = await fetch(proxy);
+    const html = await r.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const excuse = doc.querySelector('a')?.textContent?.trim();
+    if (excuse) { el.textContent = excuse; }
+  } catch {}
 }
 loadExcuse();
 

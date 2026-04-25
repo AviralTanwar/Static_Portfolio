@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="static/css/style.css"/>
   <link rel="stylesheet" href="static/css/intro.css"/>
   <link rel="stylesheet" href="static/css/animations.css"/>
+  <link rel="stylesheet" href="static/css/readability.css"/>
 </head>
 <body id="body" class="intro-locked">
 
@@ -139,6 +140,12 @@
     <div class="hint-chev"><span>↓</span><span>↓</span><span>↓</span></div>
     <div class="hint-text">scroll</div>
   </div>
+
+  <!-- Theme toggle -->
+  <button class="intro-theme-btn" id="intro-theme-btn" onclick="introToggleTheme()">
+    <span class="tb-icon" id="intro-theme-icon">☾</span>
+    <span id="intro-theme-label">Dark mode</span>
+  </button>
 </div>
 <!-- end intro -->
 
@@ -174,10 +181,10 @@
   </div>
   <div class="nav-quote" id="nav-quote">// it works on my machine.</div>
   <div class="nav-r">
-    <a class="nav-link" href="#skills">Stack</a>
+    <a class="nav-link" href="#projects">Projects</a>
     <a class="nav-link" href="#experience">Work</a>
     <a class="nav-link" href="#education">Education</a>
-    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#skills">Stack</a>
     <a class="nav-link" href="#achievements">Awards</a>
     <a class="nav-link" href="#feedback">Feedback</a>
     <a class="nav-link" href="#contact">Contact</a>
@@ -245,64 +252,54 @@
   </div>
 </div>
 
-<!-- SKILLS -->
-<section id="skills" data-chapter="01" data-chapter-name="Tech Stack">
-  <div class="sec-label"><span class="sec-num">01</span> Tech Stack</div>
-  <div class="skills-outer reveal">
-    <div class="skills-intro">Tools I reach for when the <em>problem is real.</em></div>
-    <div class="skills-cols">
-      <div class="sk-row">
-        <div class="sk-cat">Orchestration</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Apache Airflow</span>
-          <span class="sk-tag">DAG Design</span>
-          <span class="sk-tag">Scheduler Tuning</span>
-          <span class="sk-tag">RBAC</span>
-        </div>
+<!-- PROJECTS -->
+<section id="projects" data-chapter="01" data-chapter-name="Projects">
+  <div class="sec-label"><span class="sec-num">01</span> Projects</div>
+  <div class="proj-grid reveal">
+    <div class="proj-card" data-num="I">
+      <div class="proj-status"><span class="proj-dot"></span>Production · 7+ deployments</div>
+      <div class="proj-title">XBot</div>
+      <p class="proj-desc">Enterprise workflow orchestration on Apache Airflow. Complex DFOS schemas, IoT data streams, config-driven DAGs, full observability. Built from zero, owns itself in prod.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Airflow</span>
+        <span class="proj-chip">Python</span>
+        <span class="proj-chip">GCP</span>
+        <span class="proj-chip">MySQL</span>
+        <span class="proj-chip">Docker</span>
       </div>
-      <div class="sk-row">
-        <div class="sk-cat">Languages</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Python</span>
-          <span class="sk-tag">SQL / MySQL</span>
-          <span class="sk-tag">Bash</span>
-        </div>
+    </div>
+    <div class="proj-card" data-num="II">
+      <div class="proj-status"><span class="proj-dot"></span>Production · 20+ workflows</div>
+      <div class="proj-title">ManEx v3</div>
+      <p class="proj-desc">Low-code automation engine. Non-engineers trigger full ETL workflows via JSON. 15+ composable functions: DB ops, API calls, validations, notifications. ~40% faster delivery.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Python</span>
+        <span class="proj-chip">SQL</span>
+        <span class="proj-chip">REST APIs</span>
+        <span class="proj-chip">JSON DSL</span>
       </div>
-      <div class="sk-row">
-        <div class="sk-cat">Cloud Infra</div>
-        <div class="sk-tags">
-          <span class="sk-tag">GCP Compute</span>
-          <span class="sk-tag">Cloud Storage</span>
-          <span class="sk-tag">Docker</span>
-          <span class="sk-tag">Linux</span>
-          <span class="sk-tag">Git</span>
-        </div>
+    </div>
+    <div class="proj-card" data-num="III">
+      <div class="proj-status"><span class="proj-dot"></span>Live · 5+ factories</div>
+      <div class="proj-title">DFOS Data Platform</div>
+      <p class="proj-desc">Unified data model collapsing complex multi-table schemas into a single queryable layer. 35% SLA improvement via partitioning, backfill strategies, scheduling controls.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Data Modeling</span>
+        <span class="proj-chip">Incremental ETL</span>
+        <span class="proj-chip">MySQL</span>
+        <span class="proj-chip">Airflow</span>
       </div>
-      <div class="sk-row">
-        <div class="sk-cat">Data Eng.</div>
-        <div class="sk-tags">
-          <span class="sk-tag">ETL Pipelines</span>
-          <span class="sk-tag">Incremental ETL</span>
-          <span class="sk-tag">Data Modeling</span>
-          <span class="sk-tag">Power BI</span>
-        </div>
-      </div>
-      <div class="sk-row">
-        <div class="sk-cat">Automation</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Jenkins</span>
-          <span class="sk-tag">GitHub Actions</span>
-          <span class="sk-tag">REST APIs</span>
-          <span class="sk-tag">JSON DSL</span>
-        </div>
-      </div>
-      <div class="sk-row">
-        <div class="sk-cat">In Progress</div>
-        <div class="sk-tags">
-          <span class="sk-tag wip">Apache Kafka</span>
-          <span class="sk-tag wip">Databricks</span>
-          <span class="sk-tag wip">BigQuery</span>
-        </div>
+    </div>
+    <div class="proj-card" data-num="IV">
+      <div class="proj-status"><span class="proj-dot wip"></span>In Progress · streaming</div>
+      <div class="proj-title">Kafka Streaming Pipeline</div>
+      <p class="proj-desc">Real-time IoT telemetry ingestion via Apache Kafka. Event-driven Airflow triggers. Moving the entire platform from scheduled batch to continuous streaming architecture.</p>
+      <div class="proj-stack">
+        <span class="proj-chip">Kafka</span>
+        <span class="proj-chip">Streaming</span>
+        <span class="proj-chip">IoT</span>
+        <span class="proj-chip">Airflow</span>
+        <span class="proj-chip">Python</span>
       </div>
     </div>
   </div>
@@ -401,54 +398,64 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" data-chapter="04" data-chapter-name="Projects">
-  <div class="sec-label"><span class="sec-num">04</span> Projects</div>
-  <div class="proj-grid reveal">
-    <div class="proj-card" data-num="I">
-      <div class="proj-status"><span class="proj-dot"></span>Production · 7+ deployments</div>
-      <div class="proj-title">XBot</div>
-      <p class="proj-desc">Enterprise workflow orchestration on Apache Airflow. Complex DFOS schemas, IoT data streams, config-driven DAGs, full observability. Built from zero, owns itself in prod.</p>
-      <div class="proj-stack">
-        <span class="proj-chip">Airflow</span>
-        <span class="proj-chip">Python</span>
-        <span class="proj-chip">GCP</span>
-        <span class="proj-chip">MySQL</span>
-        <span class="proj-chip">Docker</span>
+<!-- SKILLS -->
+<section id="skills" data-chapter="04" data-chapter-name="Tech Stack">
+  <div class="sec-label"><span class="sec-num">04</span> Tech Stack</div>
+  <div class="skills-outer reveal">
+    <div class="skills-intro">Tools I reach for when the <em>problem is real.</em></div>
+    <div class="skills-cols">
+      <div class="sk-row">
+        <div class="sk-cat">Orchestration</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Apache Airflow</span>
+          <span class="sk-tag">DAG Design</span>
+          <span class="sk-tag">Scheduler Tuning</span>
+          <span class="sk-tag">RBAC</span>
+        </div>
       </div>
-    </div>
-    <div class="proj-card" data-num="II">
-      <div class="proj-status"><span class="proj-dot"></span>Production · 20+ workflows</div>
-      <div class="proj-title">ManEx v3</div>
-      <p class="proj-desc">Low-code automation engine. Non-engineers trigger full ETL workflows via JSON. 15+ composable functions: DB ops, API calls, validations, notifications. ~40% faster delivery.</p>
-      <div class="proj-stack">
-        <span class="proj-chip">Python</span>
-        <span class="proj-chip">SQL</span>
-        <span class="proj-chip">REST APIs</span>
-        <span class="proj-chip">JSON DSL</span>
+      <div class="sk-row">
+        <div class="sk-cat">Languages</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Python</span>
+          <span class="sk-tag">SQL / MySQL</span>
+          <span class="sk-tag">Bash</span>
+        </div>
       </div>
-    </div>
-    <div class="proj-card" data-num="III">
-      <div class="proj-status"><span class="proj-dot"></span>Live · 5+ factories</div>
-      <div class="proj-title">DFOS Data Platform</div>
-      <p class="proj-desc">Unified data model collapsing complex multi-table schemas into a single queryable layer. 35% SLA improvement via partitioning, backfill strategies, scheduling controls.</p>
-      <div class="proj-stack">
-        <span class="proj-chip">Data Modeling</span>
-        <span class="proj-chip">Incremental ETL</span>
-        <span class="proj-chip">MySQL</span>
-        <span class="proj-chip">Airflow</span>
+      <div class="sk-row">
+        <div class="sk-cat">Cloud Infra</div>
+        <div class="sk-tags">
+          <span class="sk-tag">GCP Compute</span>
+          <span class="sk-tag">Cloud Storage</span>
+          <span class="sk-tag">Docker</span>
+          <span class="sk-tag">Linux</span>
+          <span class="sk-tag">Git</span>
+        </div>
       </div>
-    </div>
-    <div class="proj-card" data-num="IV">
-      <div class="proj-status"><span class="proj-dot wip"></span>In Progress · streaming</div>
-      <div class="proj-title">Kafka Streaming Pipeline</div>
-      <p class="proj-desc">Real-time IoT telemetry ingestion via Apache Kafka. Event-driven Airflow triggers. Moving the entire platform from scheduled batch to continuous streaming architecture.</p>
-      <div class="proj-stack">
-        <span class="proj-chip">Kafka</span>
-        <span class="proj-chip">Streaming</span>
-        <span class="proj-chip">IoT</span>
-        <span class="proj-chip">Airflow</span>
-        <span class="proj-chip">Python</span>
+      <div class="sk-row">
+        <div class="sk-cat">Data Eng.</div>
+        <div class="sk-tags">
+          <span class="sk-tag">ETL Pipelines</span>
+          <span class="sk-tag">Incremental ETL</span>
+          <span class="sk-tag">Data Modeling</span>
+          <span class="sk-tag">Power BI</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Automation</div>
+        <div class="sk-tags">
+          <span class="sk-tag">Jenkins</span>
+          <span class="sk-tag">GitHub Actions</span>
+          <span class="sk-tag">REST APIs</span>
+          <span class="sk-tag">JSON DSL</span>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">In Progress</div>
+        <div class="sk-tags">
+          <span class="sk-tag wip">Apache Kafka</span>
+          <span class="sk-tag wip">Databricks</span>
+          <span class="sk-tag wip">BigQuery</span>
+        </div>
       </div>
     </div>
   </div>

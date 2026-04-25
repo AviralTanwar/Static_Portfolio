@@ -67,51 +67,56 @@
   }
 
   /* ============================================================
-     4. KPI COUNT-UP
+     4. KPI COUNT-UP — re-fires every time section enters view
   ============================================================ */
   function initKpiCountUp() {
-    const kpis = qsa('.kpi');
-    if (!kpis.length) return;
+    const exp = qs('#experience');
+    if (!exp) return;
 
-    function parseVal(text) {
-      const m = text.match(/^([0-9.]+)([^0-9.]*)$/);
-      if (!m) return null;
-      return { num: parseFloat(m[1]), suffix: m[2] };
+    // Capture original values once from the DOM
+    const items = qsa('.kpi-val', exp).map(el => {
+      const m = el.textContent.trim().match(/^([0-9.]+)([^0-9.]*)$/);
+      return m ? { el, num: parseFloat(m[1]), suffix: m[2] } : null;
+    }).filter(Boolean);
+    if (!items.length) return;
+
+    let running = false;
+
+    function runCountUp() {
+      if (running) return;
+      running = true;
+      items.forEach(({ el, num, suffix }, i) => {
+        el.classList.add('kpi-counting');
+        const start = performance.now();
+        const step = now => {
+          const t = Math.min(1, (now - start) / 2800);
+          const val = num * easeOut(t);
+          el.textContent = (Number.isInteger(num) ? Math.round(val) : val.toFixed(1)) + suffix;
+          if (t < 1) {
+            raf(step);
+          } else {
+            el.textContent = num + suffix;
+            setTimeout(() => el.classList.remove('kpi-counting'), 400);
+            if (i === items.length - 1) running = false;
+          }
+        };
+        setTimeout(() => raf(step), i * 140);
+      });
     }
 
-    function animateKpi(el, from, to, suffix, duration) {
-      const valEl = el.querySelector('.kpi-val');
-      if (!valEl) return;
-      valEl.classList.add('kpi-counting');
-      const start = performance.now();
-      const step = now => {
-        const t = Math.min(1, (now - start) / duration);
-        const val = from + (to - from) * easeOut(t);
-        const disp = Number.isInteger(to) ? Math.round(val) : val.toFixed(1);
-        valEl.textContent = disp + suffix;
-        if (t < 1) raf(step);
-        else {
-          valEl.textContent = to + suffix;
-          setTimeout(() => valEl.classList.remove('kpi-counting'), 400);
-        }
-      };
-      raf(step);
+    function reset() {
+      running = false;
+      items.forEach(({ el, suffix }) => { el.textContent = '0' + suffix; });
     }
 
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        io.unobserve(e.target);
-        qsa('.kpi-val', e.target).forEach((el, i) => {
-          const parsed = parseVal(el.textContent.trim());
-          if (!parsed) return;
-          setTimeout(() => animateKpi(el.parentElement, 0, parsed.num, parsed.suffix, 900), i * 140);
-        });
+        if (e.isIntersecting) runCountUp();
+        else reset();
       });
     }, { threshold: 0.25 });
 
-    const exp = qs('#experience');
-    if (exp) io.observe(exp);
+    io.observe(exp);
   }
 
   /* ============================================================
@@ -162,16 +167,18 @@
      7. PARALLAX HERO
   ============================================================ */
   function initParallax() {
-    const hero = qs('#hero');
-    if (!hero) return;
+    const inner = qs('#hero .hero-l');
+    if (!inner) return;
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (ticking) return;
       ticking = true;
       raf(() => {
         const y = window.scrollY;
-        if (y < window.innerHeight * 1.2) {
-          hero.style.transform = `translateY(${y * 0.22}px)`;
+        if (y < window.innerHeight) {
+          inner.style.transform = `translateY(${y * 0.12}px)`;
+        } else {
+          inner.style.transform = '';
         }
         ticking = false;
       });
