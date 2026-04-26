@@ -1,0 +1,34 @@
+[
+  {
+    "num": "I",
+    "status": "Production · 7+ deployments",
+    "live": true,
+    "title": "XBot",
+    "description": "Enterprise workflow orchestration on Apache Airflow. Complex DFOS schemas, IoT data streams, config-driven DAGs, full observability. Built from zero, owns itself in prod.",
+    "stack": ["Airflow", "Python", "GCP", "MySQL", "Docker"]
+  },
+  {
+    "num": "II",
+    "status": "Production · 20+ workflows",
+    "live": true,
+    "title": "ManEx v3",
+    "description": "Low-code automation engine. Non-engineers trigger full ETL workflows via JSON. 15+ composable functions: DB ops, API calls, validations, notifications. ~40% faster delivery.",
+    "stack": ["Python", "SQL", "REST APIs", "JSON DSL"]
+  },
+  {
+    "num": "III",
+    "status": "Live · 5+ factories",
+    "live": true,
+    "title": "DFOS Data Platform",
+    "description": "Unified data model collapsing complex multi-table schemas into a single queryable layer. 35% SLA improvement via partitioning, backfill strategies, scheduling controls.",
+    "stack": ["Data Modeling", "Incremental ETL", "MySQL", "Airflow"]
+  },
+  {
+    "num": "IV",
+    "status": "In Progress · streaming",
+    "live": false,
+    "title": "Kafka Streaming Pipeline",
+    "description": "Real-time IoT telemetry ingestion via Apache Kafka. Event-driven Airflow triggers. Moving the entire platform from scheduled batch to continuous streaming architecture.",
+    "stack": ["Kafka", "Streaming", "IoT", "Airflow", "Python"]
+  }
+]

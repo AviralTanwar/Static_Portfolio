@@ -1,0 +1,8 @@
+{
+  "eyebrow": "Platform Owner · Solution Architect · Data Engineer",
+  "titleLines": [
+    "Data Engineer & Workflow Orchestration",
+    "Apache Airflow · Python · GCP · SQL"
+  ],
+  "description": "I build the infrastructure that moves data at scale. <strong>1M+ records/month</strong>, 50s+ production deployments, zero tolerance for manual toil. Currently architecting real-time streaming pipelines at NRV DesignX."
+}

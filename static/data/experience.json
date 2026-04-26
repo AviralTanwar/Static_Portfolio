@@ -1,0 +1,63 @@
+[
+  {
+    "period": "Oct 2025 – Present",
+    "company": "NRV DesignX Pvt. Ltd.",
+    "location": "Noida, India",
+    "role": "Associate Manager",
+    "title": "Platform Owner — XBot Orchestration System",
+    "kpis": [
+      { "value": "1M+", "label": "records/mo" },
+      { "value": "7+",  "label": "deployments" },
+      { "value": "40%", "label": "effort saved" },
+      { "value": "70%", "label": "less follow-ups" }
+    ],
+    "bullets": [
+      "Owned end-to-end XBot lifecycle — architecture, deployment, scaling, observability — on GCP VMs with Apache Airflow",
+      "Designed ManEx v3: low-code automation engine, 15+ reusable components, JSON-driven workflow triggers for non-engineers",
+      "Incremental ETL + historical snapshots across 12+ MySQL tables — 100% reproducibility, time-travel analytics",
+      "CI/CD via Jenkins + GitHub for controlled DAG promotion from QA to production with zero-downtime deploys",
+      "100K+ logs/month centralized on GCS with automated lifecycle retention; 5,000+ notification alerts/month",
+      "Processed 1M+ IoT records/month (OEE, energy, SPC, alarms) into real-time KPIs for 5+ factory plant managers",
+      "Architecting Kafka streaming pipelines for real-time IoT telemetry ingestion [in progress]"
+    ],
+    "pipeline": true
+  },
+  {
+    "period": "Jun 2024 – Oct 2025",
+    "company": "NRV DesignX Pvt. Ltd.",
+    "location": "Noida, India",
+    "role": "Senior Developer",
+    "title": "Python Developer — Data Pipelines & Automation",
+    "bullets": [
+      "Spearheaded a team of 5+ Python developers to design and implement data transformation pipelines, improving processing speed by 30%",
+      "Integrated third-party REST APIs with OAuth and JWT authentication mechanisms to expand platform functionality",
+      "Designed scalable data framework for partitioning raw MySQL tables, optimising performance across 3 GB+ datasets",
+      "Enforced best coding practices and maintained 85%+ test coverage, reducing production defects by 25%"
+    ]
+  },
+  {
+    "period": "May 2024 – Jun 2024",
+    "company": "NRV DesignX Pvt. Ltd.",
+    "location": "Noida, India",
+    "role": "Intern",
+    "title": "Python Intern — Workflow Orchestration",
+    "bullets": [
+      "Deployed and configured Apache Airflow on GCP VMs — first exposure to production-grade ETL orchestration",
+      "Contributed to pipeline development under senior engineers, learning the DFOS data schema and DAG patterns",
+      "Converted to full-time Senior Developer within 2 months on the basis of early output"
+    ]
+  },
+  {
+    "period": "May 2023 – Jun 2023",
+    "company": "IIT Jodhpur",
+    "location": "Jodhpur, India",
+    "role": "AI/ML Intern",
+    "title": "AI/ML Research Intern — Predictive Pricing",
+    "bullets": [
+      "Developed a predictive pricing model using logistic regression and random forest algorithms, achieving 90% accuracy",
+      "Led web scraping with Selenium and BeautifulSoup across 10+ data sources for market pricing insights",
+      "Applied scikit-learn for feature engineering and cross-validation; improved model performance by 30%",
+      "Automated data collection and processing workflows, reducing preparation time by 40%"
+    ]
+  }
+]

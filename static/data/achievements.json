@@ -1,0 +1,24 @@
+[
+  {
+    "logo": "AT",
+    "platform": "HackerRank",
+    "badge": "Certificate",
+    "title": "Python & Problem Solving",
+    "description": "Verified proficiency in Python programming and algorithmic problem-solving. A credential that validates core engineering fundamentals.",
+    "link": {
+      "label": "View Certificate ↗",
+      "url": "https://www.hackerrank.com/certificates"
+    }
+  },
+  {
+    "logo": "AT",
+    "platform": "HackerRank",
+    "badge": "Solutions",
+    "title": "100+ Problems Solved",
+    "description": "Active competitive profile with solutions in Python across data structures, algorithms, SQL, and problem-solving domains. Consistent contributor.",
+    "link": {
+      "label": "View Profile ↗",
+      "url": "https://www.hackerrank.com/aviraltanwar"
+    }
+  }
+]

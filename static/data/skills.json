@@ -1,0 +1,30 @@
+{
+  "intro": "Tools I reach for when the <em>problem is real.</em>",
+  "categories": [
+    {
+      "name": "Orchestration",
+      "tags": ["Apache Airflow", "DAG Design", "Scheduler Tuning", "RBAC"]
+    },
+    {
+      "name": "Languages",
+      "tags": ["Python", "SQL / MySQL", "Bash"]
+    },
+    {
+      "name": "Cloud Infra",
+      "tags": ["GCP Compute", "Cloud Storage", "Docker", "Linux", "Git"]
+    },
+    {
+      "name": "Data Eng.",
+      "tags": ["ETL Pipelines", "Incremental ETL", "Data Modeling", "Power BI"]
+    },
+    {
+      "name": "Automation",
+      "tags": ["Jenkins", "GitHub Actions", "REST APIs", "JSON DSL"]
+    },
+    {
+      "name": "In Progress",
+      "wip": true,
+      "tags": ["Apache Kafka", "Databricks", "BigQuery"]
+    }
+  ]
+}

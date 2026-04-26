@@ -1,0 +1,35 @@
+{
+  "heading": "Got a pipeline that needs fixing?",
+  "cta": "Let's talk.",
+  "note": "Open to senior data engineering roles, platform architecture work, or just a conversation about orchestration systems done right.\n\nBased in Noida, India.",
+  "links": [
+    {
+      "type": "Email",
+      "label": "aviraltanwar@gmail.com",
+      "href": "mailto:aviraltanwar@gmail.com",
+      "icon": "email",
+      "external": false
+    },
+    {
+      "type": "Phone",
+      "label": "+91 99718 86273",
+      "href": "tel:+919971886273",
+      "icon": "phone",
+      "external": false
+    },
+    {
+      "type": "LinkedIn",
+      "label": "linkedin.com/in/aviraltanwar",
+      "href": "https://linkedin.com/in/aviraltanwar",
+      "icon": "linkedin",
+      "external": true
+    },
+    {
+      "type": "GitHub",
+      "label": "github.com/aviraltanwar",
+      "href": "https://github.com/aviraltanwar",
+      "icon": "github",
+      "external": true
+    }
+  ]
+}

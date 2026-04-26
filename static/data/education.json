@@ -1,0 +1,18 @@
+[
+  {
+    "period": "2020 – 2024",
+    "institution": "Jaypee Institute of Information Technology",
+    "location": "Noida, Uttar Pradesh, India",
+    "tag": "B.Tech",
+    "degree": "Computer Science & Engineering",
+    "detail": "Four-year undergraduate program covering data structures, algorithms, operating systems, databases, and software engineering. Final year focused on data pipelines and distributed systems."
+  },
+  {
+    "period": "2018 – 2020",
+    "institution": "Delhi Public School, Greater Noida",
+    "location": "Greater Noida, Uttar Pradesh",
+    "tag": "Class XII",
+    "degree": "Science — PCM",
+    "detail": "Physics, Chemistry, Mathematics with Computer Science. Strong foundation that led directly into engineering."
+  }
+]

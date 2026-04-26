@@ -1,0 +1,14 @@
+{
+  "name": {
+    "first": "Aviral",
+    "last": "Tanwar."
+  },
+  "roles": ["Platform Owner", "Solution Architect", "Data Engineer"],
+  "contact": {
+    "email": "aviraltanwar@gmail.com",
+    "phone": "+91-9971886273",
+    "phoneFormatted": "+91 99718 86273",
+    "location": "Noida, Uttar Pradesh, India",
+    "portfolio": "https://aviral-tanwar.github.io/Static_Portfolio"
+  }
+}

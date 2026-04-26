@@ -215,16 +215,25 @@
   /* ============================================================
      INIT
   ============================================================ */
+  let _firstInit = true;
+
   function init() {
-    initHeroStagger();
-    initSectionLabels();
+    if (_firstInit) {
+      initHeroStagger();
+      initSectionLabels();
+      initParallax();
+      initSectionNumbers();
+      _firstInit = false;
+    }
+    /* Re-run for dynamic content on every call */
     initSkillTags();
     initKpiCountUp();
     initCardTilt();
     initContactStagger();
-    initParallax();
-    initSectionNumbers();
   }
+
+  /* Expose so content.js can call after dynamic render */
+  window.__reinitAnimations = init;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

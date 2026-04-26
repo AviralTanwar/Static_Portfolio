@@ -1,0 +1,16 @@
+{
+  "intro": "What people <em>say.</em>",
+  "items": [
+    {
+      "initials": "DC",
+      "name": "Divyansh Chawla",
+      "connection": "1st",
+      "role": "Python Developer @ DesignX",
+      "date": "March 26, 2026 · reported to Aviral directly",
+      "paragraphs": [
+        "I worked closely with Aviral Tanwar and he's someone you can really count on. He's strong with Python and Apache Airflow, and has handled building and managing data pipelines quite well. Whenever something tricky came up, he was usually the one figuring it out calmly and getting things done without overcomplicating it.",
+        "He's also easy to work with, always open to helping others and takes responsibility for his work. You don't have to chase him for updates, he just gets things done. Overall, I'd definitely recommend Aviral Tanwar if you're looking for someone solid and dependable on your team."
+      ]
+    }
+  ]
+}
