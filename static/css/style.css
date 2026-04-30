@@ -640,6 +640,18 @@ section {
   background: var(--surface);
   transition: background .3s;
 }
+.proj-card--linked { display: block; text-decoration: none; color: inherit; }
+.proj-link-hint {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 16px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .2s, transform .2s;
+}
+.proj-card--linked:hover .proj-link-hint { opacity: 1; transform: none; }
 
 /* ===== ACHIEVEMENTS ===== */
 .ach-grid {

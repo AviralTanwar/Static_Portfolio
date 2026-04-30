@@ -384,14 +384,62 @@ function closeResumeModal() {
 
 function generateCoverLetter() {
   const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  /* ── Pull from loaded JSON data ─────────────────────────── */
+  const all  = window.__portfolioData   || {};
   const cl   = window.__coverLetterData || {};
-  const meta = window.__metaData || {};
-  const name    = meta.name    || { first: 'Aviral', last: 'Tanwar.' };
-  const contact = meta.contact || {};
-  const roles   = (meta.roles || ['Platform Owner', 'Solution Architect', 'Data Engineer']).join(' · ');
-  const subject = cl.subject    || 'Platform Owner / Data Engineer / Solution Architect';
-  const paragraphs = cl.paragraphs || [];
-  const closing    = cl.closing    || 'Sincerely,';
+  const meta = window.__metaData        || {};
+
+  const name       = meta.name    || { first: 'Aviral', last: 'Tanwar.' };
+  const contact    = meta.contact || {};
+  const roles      = (meta.roles  || ['Platform Owner','Solution Architect','Data Engineer']).join(' · ');
+  const experience = all.experience || [];
+  const skills     = all.skills     || { categories: [] };
+  const education  = all.education  || [];
+
+  /* ── Current role (first entry) ─────────────────────────── */
+  const cur  = experience[0] || {};
+  const kpis = cur.kpis || [];
+
+  /* ── Key achievement bullets ─────────────────────────────── */
+  const bulletCount = cl.bullets_count || 4;
+  const bullets = (cur.bullets || []).slice(0, bulletCount);
+  const bulletHTML = bullets.map(b => `<li>${b}</li>`).join('');
+
+  /* ── Skills summary ──────────────────────────────────────── */
+  const catCount    = cl.skill_categories_count || 4;
+  const activeCats  = (skills.categories || []).filter(c => !c.wip).slice(0, catCount);
+  const wipCats     = (skills.categories || []).filter(c => c.wip);
+  const skillLines  = activeCats.map(c =>
+    `<span class="sk-cat-name">${c.name}:</span> ${c.tags.slice(0, 3).join(', ')}`
+  );
+  const wipTags = wipCats.flatMap(c => c.tags).slice(0, 3);
+
+  /* ── Career progression at current company ───────────────── */
+  const sameCompany = experience.filter(e => e.company === cur.company);
+  const progression = sameCompany.length > 1
+    ? sameCompany.map(e => e.role).reverse().join(' → ')
+    : null;
+
+  /* ── Other companies ─────────────────────────────────────── */
+  const otherExp = experience.filter(e => e.company !== cur.company);
+  const otherLines = otherExp.map(e =>
+    `<strong>${e.role}</strong> at ${e.company} (${e.period})`
+  ).join('; ');
+
+  /* ── Education ───────────────────────────────────────────── */
+  const edu = education[0] || {};
+
+  /* ── Config ──────────────────────────────────────────────── */
+  const subject     = cl.subject      || 'Platform Owner / Data Engineer / Solution Architect';
+  const salutation  = cl.salutation   || 'Dear Hiring Manager,';
+  const closingLine = cl.closing_line || 'I would welcome the opportunity to discuss how my experience aligns with your requirements. Thank you for your consideration.';
+  const closing     = cl.closing      || 'Sincerely,';
+
+  /* ── KPI inline summary (text only, no boxes) ───────────── */
+  const kpiSummary = kpis.length
+    ? kpis.map(k => `<strong>${k.value}</strong> ${k.label}`).join(', ')
+    : '';
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -403,74 +451,63 @@ function generateCoverLetter() {
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'IBM Plex Mono', monospace;
-      background: #fff;
-      color: #1a1714;
-      padding: 56px 72px;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 12.5px;
-      line-height: 1.85;
+      background: #fff; color: #1a1714;
+      padding: 52px 68px; max-width: 800px; margin: 0 auto;
+      font-size: 12px; line-height: 1.8;
     }
+    /* Header */
     .cl-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-bottom: 18px;
-      margin-bottom: 32px;
-      border-bottom: 1.5px solid #b83a0c;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      padding-bottom: 16px; margin-bottom: 28px; border-bottom: 1.5px solid #b83a0c;
     }
-    .cl-name {
-      font-family: 'Fraunces', serif;
-      font-size: 34px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .cl-name em { color: #b83a0c; font-style: italic; }
-    .cl-roles { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #857f74; }
-    .cl-contact { text-align: right; font-size: 11px; color: #4a4540; line-height: 1.7; }
-    .cl-date { font-size: 10px; color: #857f74; letter-spacing: 1px; margin-bottom: 24px; }
+    .cl-name { font-family:'Fraunces',serif; font-weight:700; font-size:32px; letter-spacing:-1px; line-height:1; margin-bottom:5px; }
+    .cl-name em { color:#b83a0c; font-style:italic; }
+    .cl-roles { font-size:8.5px; letter-spacing:2px; text-transform:uppercase; color:#857f74; }
+    .cl-contact { text-align:right; font-size:11px; color:#4a4540; line-height:1.75; }
+    /* Date / Subject */
+    .cl-date { font-size:10px; color:#857f74; letter-spacing:1px; margin-bottom:20px; }
     .cl-subject {
-      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-      color: #b83a0c; border-left: 2px solid #b83a0c; padding-left: 10px; margin-bottom: 28px;
+      font-size:9.5px; letter-spacing:2px; text-transform:uppercase;
+      color:#b83a0c; border-left:2px solid #b83a0c; padding-left:10px; margin-bottom:24px;
     }
-    .cl-salutation { font-weight: 500; margin-bottom: 20px; }
-    .cl-body p { margin-bottom: 16px; color: #1a1714; }
-    .cl-body strong { font-weight: 500; }
-    .cl-sign { margin-top: 32px; }
-    .cl-sign-name {
-      font-family: 'Fraunces', serif; font-size: 22px;
-      font-style: italic; font-weight: 700; margin-top: 6px;
+    .cl-salutation { font-weight:500; margin-bottom:18px; }
+    /* Body */
+    .cl-body p { margin-bottom:14px; color:#1a1714; }
+    .cl-body strong { font-weight:500; }
+    /* Achievement bullets */
+    .cl-list { list-style:none; margin:10px 0 16px; border-top:1px solid #e8e3d8; }
+    .cl-list li {
+      padding:7px 0 7px 20px; border-bottom:1px solid #e8e3d8;
+      position:relative; font-size:11.5px; color:#4a4540;
     }
-    .cl-sign-role {
-      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-      color: #857f74; margin-top: 3px;
-    }
-    .cl-sign-links {
-      margin-top: 12px; display: flex; flex-direction: column;
-      gap: 3px; font-size: 11px; color: #4a4540;
-    }
-    .cl-sign-links a {
-      color: #b83a0c; text-decoration: none;
-      border-bottom: 1px solid #b83a0c; padding-bottom: 1px; width: fit-content;
-    }
+    .cl-list li::before { content:'//'; position:absolute; left:0; color:#b83a0c; font-size:9px; top:9px; }
+    /* Skills */
+    .cl-skill-row { font-size:11.5px; color:#4a4540; margin-bottom:4px; }
+    .sk-cat-name { color:#1a1714; font-weight:500; }
+    /* Signature */
+    .cl-sign { margin-top:28px; padding-top:20px; border-top:1px solid #e8e3d8; }
+    .cl-sign-name { font-family:'Fraunces',serif; font-size:20px; font-style:italic; font-weight:700; margin-top:6px; }
+    .cl-sign-role { font-size:8.5px; letter-spacing:1.5px; text-transform:uppercase; color:#857f74; margin-top:3px; }
+    .cl-sign-links { margin-top:10px; display:flex; flex-direction:column; gap:3px; font-size:11px; color:#4a4540; }
+    .cl-sign-links a { color:#b83a0c; text-decoration:none; border-bottom:1px solid #b83a0c; padding-bottom:1px; width:fit-content; }
+    /* Print button */
     .cl-print-btn {
-      position: fixed; bottom: 28px; right: 28px;
-      background: #b83a0c; color: #fff; border: none;
-      font-family: 'IBM Plex Mono', monospace; font-size: 10px;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 10px 20px; cursor: pointer; transition: background .2s;
+      position:fixed; bottom:24px; right:24px;
+      background:#b83a0c; color:#fff; border:none;
+      font-family:'IBM Plex Mono',monospace; font-size:9.5px;
+      letter-spacing:2px; text-transform:uppercase;
+      padding:9px 18px; cursor:pointer; transition:background .2s;
     }
-    .cl-print-btn:hover { background: #1a1714; }
+    .cl-print-btn:hover { background:#1a1714; }
     @media print {
-      body { padding: 36px 48px; }
-      .cl-print-btn { display: none; }
-      @page { margin: 0; size: A4 portrait; }
+      body { padding:32px 44px; }
+      .cl-print-btn { display:none; }
+      @page { margin:0; size:A4 portrait; }
     }
   </style>
 </head>
 <body>
+
   <div class="cl-header">
     <div>
       <div class="cl-name">${name.first}<em>${name.last}</em></div>
@@ -484,11 +521,34 @@ function generateCoverLetter() {
   </div>
 
   <div class="cl-date">${today}</div>
-  <div class="cl-subject">Application — ${subject}</div>
-  <div class="cl-salutation">${cl.salutation || 'Dear Hiring Manager,'}</div>
+  <div class="cl-subject">Re: ${subject}</div>
+  <div class="cl-salutation">${salutation}</div>
 
   <div class="cl-body">
-    ${paragraphs.map(p => `<p>${p}</p>`).join('\n    ')}
+
+    <p>
+      I am currently serving as <strong>${cur.role}</strong> at <strong>${cur.company}</strong>
+      (${cur.period || 'present'}), where I hold the position of ${cur.title}.
+      ${kpiSummary ? `My platform delivers ${kpiSummary}.` : ''}
+      ${progression ? `Within ${cur.company}, I have progressed as: ${progression}.` : ''}
+    </p>
+
+    <p>Key contributions in my current role:</p>
+    <ul class="cl-list">${bulletHTML}</ul>
+
+    <p>
+      My technical stack — ${skillLines.join(' &nbsp;·&nbsp; ')}.
+      ${wipTags.length ? `Currently expanding into <strong>${wipTags.join(', ')}</strong>.` : ''}
+    </p>
+
+    ${otherLines ? `<p>Prior to ${cur.company}: ${otherLines}.</p>` : ''}
+
+    ${edu.institution
+      ? `<p>I hold a <strong>${edu.tag} in ${edu.degree}</strong> from <strong>${edu.institution}</strong> (${edu.period}).</p>`
+      : ''}
+
+    <p>${closingLine}</p>
+
   </div>
 
   <div class="cl-sign">
@@ -507,8 +567,8 @@ function generateCoverLetter() {
 </html>`;
 
   const blob = new Blob([html], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const win = window.open(url, '_blank', 'width=860,height=1100,left=100,top=60');
+  const url  = URL.createObjectURL(blob);
+  const win  = window.open(url, '_blank', 'width=860,height=1100,left=100,top=60');
   if (win) win.focus();
   setTimeout(() => URL.revokeObjectURL(url), 30000);
 }
@@ -780,6 +840,21 @@ function beanBurst(e) {
   window.addEventListener('scroll', stopBeans, { once: true });
 }
 
+
+/* ===== COPY TO CLIPBOARD (email / phone) ===== */
+function copyEmail(el, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const label = el.querySelector('.c-link-label');
+    const arrow = el.querySelector('.c-link-arrow');
+    const orig  = label.textContent;
+    label.textContent = 'Copied!';
+    if (arrow) arrow.textContent = '✓';
+    setTimeout(() => {
+      label.textContent = orig;
+      if (arrow) arrow.textContent = '⎘';
+    }, 2000);
+  });
+}
 
 /* ===== DEVELOPER EXCUSE ===== */
 async function loadExcuse() {

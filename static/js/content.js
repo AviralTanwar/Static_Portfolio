@@ -120,13 +120,17 @@ function renderSkills(d) {
 function renderProjects(entries) {
   const grid = document.querySelector('.proj-grid');
   if (!grid) return;
-  grid.innerHTML = entries.map(p => `
-    <div class="proj-card" data-num="${p.num}">
+  grid.innerHTML = entries.map(p => {
+    const inner = `
       <div class="proj-status"><span class="proj-dot${p.live ? '' : ' wip'}"></span>${p.status}</div>
       <div class="proj-title">${p.title}</div>
       <p class="proj-desc">${p.description}</p>
       <div class="proj-stack">${p.stack.map(s => `<span class="proj-chip">${s}</span>`).join('')}</div>
-    </div>`).join('');
+      ${p.link ? `<div class="proj-link-hint">View project ↗</div>` : ''}`;
+    return p.link
+      ? `<a class="proj-card proj-card--linked" data-num="${p.num}" href="${p.link}" target="_blank" rel="noopener">${inner}</a>`
+      : `<div class="proj-card" data-num="${p.num}">${inner}</div>`;
+  }).join('');
 }
 
 function renderAchievements(entries) {
@@ -173,15 +177,21 @@ function renderContact(d) {
   section.querySelector('.contact-note').innerHTML =
     d.note.replace(/\n\n/g, '<br/><br/>') +
     ` <span class="footer-easter" onclick="hint()" title="try something">There's more to this page than meets the eye.</span>`;
-  section.querySelector('.contact-links').innerHTML = d.links.map(l => `
-    <a href="${l.href}" class="c-link"${l.external ? ' target="_blank" rel="noopener"' : ''}>
+  section.querySelector('.contact-links').innerHTML = d.links.map(l => {
+    const isCopy = l.type === 'Email' || l.type === 'Phone';
+    const attrs = isCopy
+      ? `href="#" onclick="copyEmail(this,'${l.label}');return false;"`
+      : `href="${l.href}"${l.external ? ' target="_blank" rel="noopener"' : ''}`;
+    return `
+    <a ${attrs} class="c-link">
       <div class="c-link-icon">${ICONS[l.icon]}</div>
       <div class="c-link-l">
         <span class="c-link-type">${l.type}</span>
         <span class="c-link-label">${l.label}</span>
       </div>
-      <span class="c-link-arrow">→</span>
-    </a>`).join('');
+      <span class="c-link-arrow">${isCopy ? '⎘' : '→'}</span>
+    </a>`;
+  }).join('');
 }
 
 /* ── Boot ─────────────────────────────────────────────────────── */
@@ -189,8 +199,9 @@ function renderContact(d) {
   try {
     const data = await loadAll();
 
-    /* Expose for other scripts (cover letter, etc.) */
-    window.__metaData       = data.meta;
+    /* Expose all data for cover letter generator and other scripts */
+    window.__portfolioData   = data;
+    window.__metaData        = data.meta;
     window.__coverLetterData = data.cover_letter;
 
     renderHero(data.hero, data.meta);
