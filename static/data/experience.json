@@ -32,10 +32,10 @@
     "title": "Python Developer - Data Pipelines & Automation",
     "bullets": [
       "Spearheaded a team of 5+ Python developers to design and implement data transformation pipelines, improving processing speed by 30%",
-      "Delivered custom client integrations: SAP connector for Moto Corp, ETL pipelines for Dabur and Amber, and automated transfer of transformed planning data into Excel files via Microsoft and Google APIs stored on client Google Drive",
+      "Delivered custom client integrations: Data From SAP (via api) for Moto Corp, ETL pipelines for Dabur and Amber, and automated transfer of transformed planning data into Excel files via Microsoft and Google APIs stored on client Google Drive",
       "Centralized Airflow logs on GCP Cloud Storage for observability and audit trail",
       "Integrated third-party REST APIs with OAuth and JWT authentication mechanisms to expand platform functionality",
-      "Designed scalable data framework for partitioning raw MySQL tables, optimising performance across 3 GB+ datasets",
+      "Designed scalable data framework for partitioning raw MySQL tables, optimising performance across 12 GB+ datasets",
       "Enforced best coding practices and maintained 85%+ test coverage, reducing production defects by 25%"
     ]
   },
@@ -46,7 +46,7 @@
     "role": "Intern",
     "title": "Python Intern - Workflow Orchestration",
     "bullets": [
-      "Joined 15 Jun 2024; ramped up on Python, MySQL, and the end-to-end DF-OS data schema and platform architecture",
+      "Ramped up on Python, MySQL, and the end-to-end DF-OS data schema and platform architecture",
       "Deployed Apache Airflow on GCP Compute Engine with Airflow metadata DB on Cloud SQL to support custom client orchestration requirements",
       "Configured custom email notification triggers within Airflow for client-specific alerting workflows",
       "Automated log cleanup to purge Airflow logs older than 7 days, reducing storage overhead",
