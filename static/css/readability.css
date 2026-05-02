@@ -1,32 +1,32 @@
 /* =========================================================
-   READABILITY OVERRIDES — larger fonts, better density
+   READABILITY OVERRIDES - larger fonts, better density
    ========================================================= */
 
-/* — Nav — */
+/* - Nav - */
 nav { z-index: 200; }
 #hero { padding-top: 120px; }
 .hero-btns { position: relative; z-index: 1; }
 .nav-link   { font-size: 11px; }
 .nav-quote  { font-size: 13px; }
 
-/* — Hero — */
+/* - Hero - */
 .hero-eyebrow { font-size: 11px; letter-spacing: 2.5px; }
 .hero-name    { font-size: clamp(62px, 7.5vw, 100px); }
 .hero-title   { font-size: 13px; letter-spacing: 2px; line-height: 2.1; }
 .hero-desc    { font-size: 16px; line-height: 2; }
 
-/* — Section labels — */
+/* - Section labels - */
 .sec-label { font-size: 13px; letter-spacing: 2px; margin-bottom: 48px; }
 .sec-num   { font-size: 13px; }
 
-/* — Skills — */
+/* - Skills - */
 .skills-intro { font-size: 24px; margin-bottom: 32px; }
 .sk-row  { grid-template-columns: 150px 1fr; gap: 0 24px; }
 .sk-cat  { font-size: 12px; letter-spacing: 1.5px; padding: 4px 16px; align-self: start; }
 .sk-tag  { font-size: 12px; padding: 7px 16px; letter-spacing: .5px; }
 .sk-tags { gap: 10px; padding: 4px 18px; }
 
-/* — Experience — */
+/* - Experience - */
 .exp-meta-line  { font-size: 12px; margin-bottom: 18px; gap: 10px; }
 #experience h3  { font-size: clamp(20px, 2.5vw, 30px); margin-bottom: 20px; }
 .exp-kpis       { gap: 2px; margin-bottom: 32px; }
@@ -37,42 +37,42 @@ nav { z-index: 200; }
 .exp-pts li     { font-size: 15px; line-height: 1.85; padding: 14px 0 14px 28px; border-bottom: 1px solid var(--subtle); }
 .exp-pts li::before { font-size: 11px; margin-top: 3px; }
 
-/* — Education — */
+/* - Education - */
 .edu-date   { font-size: 11px; }
 .edu-inst   { font-size: 16px; }
 .edu-degree { font-size: 20px; }
 .edu-detail { font-size: 14px; line-height: 2; }
 .edu-tag    { font-size: 10px; }
 
-/* — Projects — */
+/* - Projects - */
 .proj-title  { font-size: clamp(22px, 3vw, 32px); }
 .proj-desc   { font-size: 14px; line-height: 1.95; }
 .proj-chip   { font-size: 10px; padding: 5px 11px; letter-spacing: 1px; }
 .proj-status { font-size: 10px; letter-spacing: 1.5px; }
 
-/* — Achievements — */
+/* - Achievements - */
 .ach-title    { font-size: 18px; }
 .ach-desc     { font-size: 13px; line-height: 2; }
 .ach-platform { font-size: 12px; }
 
-/* — Feedback — */
+/* - Feedback - */
 .fb-intro    { font-size: clamp(26px, 3.5vw, 38px); }
 .fb-name     { font-size: 15px; }
 .fb-role     { font-size: 12px; }
 .fb-body     { font-size: 14px; line-height: 2.05; }
 .fb-card-date { font-size: 10px; }
 
-/* — Contact — */
+/* - Contact - */
 .contact-big  { font-size: clamp(28px, 3.5vw, 48px); }
 .contact-note { font-size: 13px; line-height: 2; }
 .c-link-type  { font-size: 9px; }
 .c-link-label { font-size: 14px; }
 
-/* — Footer — */
+/* - Footer - */
 footer      { font-size: 10px; letter-spacing: 1.2px; }
 .footer-sig { font-size: 15px; }
 
-/* — Intro theme toggle button — */
+/* - Intro theme toggle button - */
 .intro-theme-btn {
   position: absolute;
   top: 64px;
@@ -103,22 +103,22 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
 .intro-theme-btn .tb-icon { font-size: 12px; opacity: .7; }
 
 /* =========================================================
-   RESPONSIVE — Mobile, Tablet, All Laptop Sizes
+   RESPONSIVE - Mobile, Tablet, All Laptop Sizes
    ========================================================= */
 
-/* — Extra large screens (1400px+) — */
+/* - Extra large screens (1400px+) - */
 @media (min-width: 1400px) {
   nav     { padding: 16px 64px; }
   #hero   { padding: 130px 64px 80px; }
   section { padding: 100px 64px; }
 }
 
-/* — Large laptops (1280px) — */
+/* - Large laptops (1280px) - */
 @media (max-width: 1280px) {
   .nav-quote { max-width: 220px; font-size: 12px; }
 }
 
-/* — Laptops (1024px) — */
+/* - Laptops (1024px) - */
 @media (max-width: 1024px) {
   nav     { padding: 14px 28px; }
   #hero   { padding: 110px 28px 60px; }
@@ -130,9 +130,9 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .pipe-svg { width: min(900px, 92vw); }
 }
 
-/* — Tablet portrait (768px) — */
+/* - Tablet portrait (768px) - */
 @media (max-width: 768px) {
-  /* Nav — logo left, controls right */
+  /* Nav - logo left, controls right */
   nav    { padding: 12px 20px; }
   .nav-r { margin-left: auto; gap: 12px; }
   .nav-link  { display: none; }
@@ -191,7 +191,7 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .intro-theme-btn { font-size: 9px; padding: 6px 12px; top: 18px; }
 }
 
-/* — Large phone / small tablet (640px) — */
+/* - Large phone / small tablet (640px) - */
 @media (max-width: 640px) {
   /* Fix eyebrow wrapping: at this width the text fits on 1 line at 8px */
   .hero-eyebrow {
@@ -201,7 +201,7 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
     overflow: hidden;
   }
 
-  /* Life DAG SVG is too wide — hide, keep title */
+  /* Life DAG SVG is too wide - hide, keep title */
   .pipe-svg { display: none; }
   .scene-pipe .pipe-title { font-size: 10px; }
 
@@ -213,7 +213,7 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .rm-opt-desc { display: none; }
 }
 
-/* — Mobile (480px) — */
+/* - Mobile (480px) - */
 @media (max-width: 480px) {
   /* Nav */
   nav { padding: 10px 16px; }
@@ -288,7 +288,7 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   .rm-close { padding: 8px 16px; font-size: 8px; }
 }
 
-/* — Very small phones (≤360px) — */
+/* - Very small phones (≤360px) - */
 @media (max-width: 360px) {
   nav { padding: 8px 12px; }
   .logo-at { font-size: 16px; }
@@ -307,7 +307,7 @@ footer      { font-size: 10px; letter-spacing: 1.2px; }
   footer { padding: 12px; }
 }
 
-/* — Intro pipe SVG: overflow on mid sizes — */
+/* - Intro pipe SVG: overflow on mid sizes - */
 @media (max-width: 900px) {
   .scene-pipe { padding: 0 8px; }
   .pipe-svg { overflow-x: auto; }

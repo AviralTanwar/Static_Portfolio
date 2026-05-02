@@ -1,5 +1,5 @@
 /* =========================================================
-   PORTFOLIO ANIMATIONS — additive JS layer
+   PORTFOLIO ANIMATIONS - additive JS layer
    Runs after main.js. Matches existing patterns exactly.
    ========================================================= */
 (function () {
@@ -67,7 +67,7 @@
   }
 
   /* ============================================================
-     4. KPI COUNT-UP — re-fires every time section enters view
+     4. KPI COUNT-UP - re-fires every time section enters view
   ============================================================ */
   function initKpiCountUp() {
     const exp = qs('#experience');

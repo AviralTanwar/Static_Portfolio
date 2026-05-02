@@ -1,5 +1,5 @@
 /* =========================================================
-   PORTFOLIO ANIMATIONS — additive layer, no overrides
+   PORTFOLIO ANIMATIONS - additive layer, no overrides
    Matches existing IBM Plex Mono / Fraunces aesthetic.
    ========================================================= */
 
@@ -38,7 +38,7 @@
 }
 .skills-revealed .sk-tag { opacity: 1; transform: none; }
 
-/* ===== KPI count-up — highlight flash ===== */
+/* ===== KPI count-up - highlight flash ===== */
 .kpi-val.kpi-counting {
   color: var(--accent);
   transition: color .8s ease;

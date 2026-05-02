@@ -22,7 +22,7 @@
     "status": "Live · open source",
     "live": true,
     "title": "This Portfolio",
-    "description": "Hand-coded Flask portfolio with a data-driven JSON content layer, canvas animation, scroll-scrubbed intro, and a custom sniper cursor — no templates, no frameworks.",
+    "description": "Hand-coded Flask portfolio with a data-driven JSON content layer, canvas animation, scroll-scrubbed intro, and a custom sniper cursor - no templates, no frameworks.",
     "stack": ["Flask", "Python", "HTML", "CSS", "Vanilla JS", "Canvas API", "JSON"],
     "link": "https://github.com/AviralTanwar/Static_Portfolio"
   },

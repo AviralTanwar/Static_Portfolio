@@ -30,6 +30,13 @@
       "href": "https://github.com/aviraltanwar",
       "icon": "github",
       "external": true
+    }, 
+    {
+      "type": "Portfolio",
+      "label": "aviraltanwar.github.io/Static_Portfolio/",
+      "href": "https://aviraltanwar.github.io/Static_Portfolio/",
+      "icon": "portfolio",
+      "external": true
     }
   ]
 }

@@ -183,7 +183,7 @@ function renderCanvas() {
 }
 renderCanvas();
 
-/* ===== CLICK EXPLOSION — blow the lines outward ===== */
+/* ===== CLICK EXPLOSION - blow the lines outward ===== */
 function explodeLines(cx, cy) {
   const radius = 280;
   lines.forEach(ln => {
@@ -445,7 +445,7 @@ function generateCoverLetter() {
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <title>Cover Letter — ${name.first} ${name.last}</title>
+  <title>Cover Letter - ${name.first} ${name.last}</title>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -537,7 +537,7 @@ function generateCoverLetter() {
     <ul class="cl-list">${bulletHTML}</ul>
 
     <p>
-      My technical stack — ${skillLines.join(' &nbsp;·&nbsp; ')}.
+      My technical stack - ${skillLines.join(' &nbsp;·&nbsp; ')}.
       ${wipTags.length ? `Currently expanding into <strong>${wipTags.join(', ')}</strong>.` : ''}
     </p>
 
@@ -632,26 +632,26 @@ function resumeHTML(role) {
 
   const expBullets = {
     po: `
-  <li>Owned end-to-end XBot lifecycle — architecture, deployment, scaling, observability — on GCP VMs with Apache Airflow</li>
+  <li>Owned end-to-end XBot lifecycle - architecture, deployment, scaling, observability - on GCP VMs with Apache Airflow</li>
   <li>Designed ManEx v3: low-code automation engine with 15+ reusable components and JSON-driven workflow triggers</li>
   <li>CI/CD via Jenkins + GitHub for controlled DAG promotion QA → production with zero-downtime deploys</li>
-  <li>Incremental ETL + historical snapshots across 12+ MySQL tables — 100% reproducibility, time-travel analytics</li>
+  <li>Incremental ETL + historical snapshots across 12+ MySQL tables - 100% reproducibility, time-travel analytics</li>
   <li>100K+ logs/month centralized on GCS with automated retention; 5,000+ notification alerts/month</li>
   <li>Processed 1M+ IoT records/month (OEE, energy, SPC, alarms) into real-time KPIs for 5+ factory plant managers</li>
   <li>Architecting Kafka streaming pipelines for real-time IoT telemetry ingestion [in progress]</li>`,
     sa: `
   <li>Architected XBot end-to-end on GCP: VM topology, network, storage, Airflow scheduler tuning, RBAC model</li>
   <li>Designed ManEx v3 component model: 15+ reusable building blocks, JSON DSL interface for non-engineers</li>
-  <li>Unified DFOS data model across 12+ MySQL tables — single queryable layer, 35% SLA improvement</li>
+  <li>Unified DFOS data model across 12+ MySQL tables - single queryable layer, 35% SLA improvement</li>
   <li>CI/CD pipeline: Jenkins + GitHub, multi-stage DAG promotion, zero-downtime production deploys</li>
   <li>Architecting Kafka streaming topology for real-time IoT telemetry ingestion [in progress]</li>
   <li>Owned entire observability stack: 100K+ logs/month on GCS, 5,000+ alert dispatches/month</li>
   <li>Delivered 7+ production deployments with zero unplanned downtime since May 2024</li>`,
     de: `
-  <li>Incremental ETL + historical snapshots across 12+ MySQL tables — 100% reproducibility, time-travel analytics</li>
+  <li>Incremental ETL + historical snapshots across 12+ MySQL tables - 100% reproducibility, time-travel analytics</li>
   <li>Processed 1M+ IoT records/month (OEE, energy, SPC, alarms) into real-time KPIs for 5+ factory plant managers</li>
   <li>Architecting Kafka streaming pipelines for real-time IoT telemetry ingestion [in progress]</li>
-  <li>Owned end-to-end XBot lifecycle — architecture, deployment, scaling, observability — on GCP VMs with Apache Airflow</li>
+  <li>Owned end-to-end XBot lifecycle - architecture, deployment, scaling, observability - on GCP VMs with Apache Airflow</li>
   <li>Designed ManEx v3: low-code automation engine with 15+ reusable components and JSON-driven workflow triggers</li>
   <li>CI/CD via Jenkins + GitHub for controlled DAG promotion QA → production with zero-downtime deploys</li>
   <li>100K+ logs/month centralized on GCS with automated retention; 5,000+ notification alerts/month</li>`
@@ -659,7 +659,7 @@ function resumeHTML(role) {
   const bullets = expBullets[role] || expBullets.de;
 
   return `<!DOCTYPE html><html><head><meta charset="utf-8"/>
-<title>Aviral Tanwar — Resume</title>
+<title>Aviral Tanwar - Resume</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Fraunces:ital,wght@0,700;1,300;1,700&display=swap" rel="stylesheet"/>
 <style>
   @page { size: A4; margin: 18mm 16mm; }
@@ -687,7 +687,7 @@ function resumeHTML(role) {
   .kpi .l { font-size: 7.5pt; letter-spacing: 1.5px; text-transform: uppercase; color: #857f74; margin-top: 3pt; }
   .footer-note { font-size: 8pt; color: #857f74; margin-top: 18pt; font-style: italic; font-family: 'Fraunces', serif; }
 </style></head><body>
-<div class="eyebrow">— ${eyebrow} —</div>
+<div class="eyebrow">- ${eyebrow} -</div>
 <h1>Aviral <em>Tanwar.</em></h1>
 <div class="contact">
   <span><strong>Email</strong> aviraltanwar@gmail.com</span>
@@ -698,11 +698,11 @@ function resumeHTML(role) {
 </div>
 <hr/>
 <h2>Summary</h2>
-<p style="color:#4a4540;font-size:10pt;line-height:1.7;">Data engineer focused on workflow orchestration and platform ownership. I build the infrastructure that moves data at scale — <b style="color:#1a1714;font-weight:500;">1M+ records/month</b>, 7+ production deployments, zero tolerance for manual toil. Currently architecting real-time streaming pipelines at NRV DesignX.</p>
+<p style="color:#4a4540;font-size:10pt;line-height:1.7;">Data engineer focused on workflow orchestration and platform ownership. I build the infrastructure that moves data at scale - <b style="color:#1a1714;font-weight:500;">1M+ records/month</b>, 7+ production deployments, zero tolerance for manual toil. Currently architecting real-time streaming pipelines at NRV DesignX.</p>
 <hr/>
 <h2>Experience</h2>
-<h3>Platform Owner — XBot Orchestration System</h3>
-<div class="role-meta"><b>NRV DesignX Pvt. Ltd.</b> · Noida · May 2024 – Present · Associate Manager</div>
+<h3>Platform Owner - XBot Orchestration System</h3>
+<div class="role-meta"><b>NRV DesignX Pvt. Ltd.</b> · Noida · May 2024 - Present · Associate Manager</div>
 <div class="kpis">
   <div class="kpi"><div class="v">1M+</div><div class="l">records/mo</div></div>
   <div class="kpi"><div class="v">7+</div><div class="l">deployments</div></div>
@@ -714,10 +714,10 @@ function resumeHTML(role) {
 <hr/>
 <h2>Selected Projects</h2>
 <ul>
-  <li><b style="color:#1a1714;">XBot</b> — Enterprise workflow orchestration on Apache Airflow. Built from zero; 7+ production deployments.</li>
-  <li><b style="color:#1a1714;">ManEx v3</b> — Low-code automation engine. JSON-driven ETL for non-engineers. ~40% faster delivery.</li>
-  <li><b style="color:#1a1714;">DFOS Data Platform</b> — Unified data model across 5+ factories. 35% SLA improvement.</li>
-  <li><b style="color:#1a1714;">Kafka Streaming Pipeline</b> — Real-time IoT telemetry ingestion [in progress].</li>
+  <li><b style="color:#1a1714;">XBot</b> - Enterprise workflow orchestration on Apache Airflow. Built from zero; 7+ production deployments.</li>
+  <li><b style="color:#1a1714;">ManEx v3</b> - Low-code automation engine. JSON-driven ETL for non-engineers. ~40% faster delivery.</li>
+  <li><b style="color:#1a1714;">DFOS Data Platform</b> - Unified data model across 5+ factories. 35% SLA improvement.</li>
+  <li><b style="color:#1a1714;">Kafka Streaming Pipeline</b> - Real-time IoT telemetry ingestion [in progress].</li>
 </ul>
 <hr/>
 <h2>Tech Stack</h2>
@@ -732,14 +732,14 @@ function resumeHTML(role) {
 <hr/>
 <h2>Education</h2>
 <h3>B.Tech, Computer Science &amp; Engineering</h3>
-<div class="role-meta"><b>Jaypee Institute of Information Technology (JIIT)</b> · 2020 – 2024</div>
+<div class="role-meta"><b>Jaypee Institute of Information Technology (JIIT)</b> · 2020 - 2024</div>
 <hr/>
 <h2>Achievements</h2>
 <ul>
-  <li>HackerRank — Python &amp; Problem Solving verified certification</li>
-  <li>HackerRank — 100+ problems solved across DS, algorithms, SQL</li>
+  <li>HackerRank - Python &amp; Problem Solving verified certification</li>
+  <li>HackerRank - 100+ problems solved across DS, algorithms, SQL</li>
 </ul>
-<div class="footer-note">// built with precision — no templates</div>
+<div class="footer-note">// built with precision - no templates</div>
 </body></html>`;
 }
 

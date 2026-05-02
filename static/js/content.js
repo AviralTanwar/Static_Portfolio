@@ -1,5 +1,5 @@
 /* =================================================================
-   CONTENT LOADER — fetches static/data/*.json and renders sections.
+   CONTENT LOADER - fetches static/data/*.json and renders sections.
    All portfolio copy lives in JSON; edit there, never here.
    ================================================================= */
 
@@ -36,7 +36,8 @@ const ICONS = {
   email:    `<svg width="18" height="18" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="12" rx="1"/><path d="M1 4l8 5 8-5"/></svg>`,
   phone:    `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 1.5h4l2 5-2.5 1.5a11 11 0 005 5L12.5 11l5 2v4c0 .8-4 3-9-2s-7.8-9-6-12.5z"/></svg>`,
   linkedin: `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="6" width="3.5" height="11"/><circle cx="2.75" cy="2.75" r="1.75"/><path d="M6.5 6h3v1.6s.8-1.6 3-1.6c2.4 0 4 1.4 4 4.4V17h-3.5v-6c0-1.3-.6-2-1.7-2s-1.8.8-1.8 2V17H6.5V6z"/></svg>`,
-  github:   `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M9 0C4 0 0 4 0 9c0 4 2.6 7.4 6.2 8.6.5.1.6-.2.6-.5v-1.7c-2.6.6-3.1-1.2-3.1-1.2-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.3.8 1.3.8.7 1.2 1.9 1 2.3.8.1-.5.3-.9.5-1.1-1.9-.2-3.8-1-3.8-4.3 0-1 .3-1.8.8-2.5-.1-.2-.4-1.1.1-2.4 0 0 .7-.2 2.4.8.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.7-1 2.4-.8 2.4-.8.4 1.2.2 2.1.1 2.4.5.6.8 1.4.8 2.5 0 3.4-2 4.2-3.9 4.4.3.3.6.8.6 1.6v2.3c0 .2.2.5.6.4C15.4 16.4 18 13 18 9 18 4 14 0 9 0z"/></svg>`
+  github:    `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path fill-rule="evenodd" d="M9 0C4 0 0 4 0 9c0 4 2.6 7.4 6.2 8.6.5.1.6-.2.6-.5v-1.7c-2.6.6-3.1-1.2-3.1-1.2-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.3.8 1.3.8.7 1.2 1.9 1 2.3.8.1-.5.3-.9.5-1.1-1.9-.2-3.8-1-3.8-4.3 0-1 .3-1.8.8-2.5-.1-.2-.4-1.1.1-2.4 0 0 .7-.2 2.4.8.7-.2 1.4-.3 2.1-.3s1.4.1 2.1.3c1.7-1 2.4-.8 2.4-.8.4 1.2.2 2.1.1 2.4.5.6.8 1.4.8 2.5 0 3.4-2 4.2-3.9 4.4.3.3.6.8.6 1.6v2.3c0 .2.2.5.6.4C15.4 16.4 18 13 18 9 18 4 14 0 9 0z"/></svg>`,
+  portfolio: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="9" r="7.5"/><ellipse cx="9" cy="9" rx="3.2" ry="7.5"/><line x1="1.5" y1="9" x2="16.5" y2="9"/><line x1="2.2" y1="5.5" x2="15.8" y2="5.5"/><line x1="2.2" y1="12.5" x2="15.8" y2="12.5"/></svg>`
 };
 
 /* ── Fetchers ─────────────────────────────────────────────────── */

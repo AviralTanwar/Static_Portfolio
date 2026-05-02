@@ -63,7 +63,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 
-/* ===== CURSOR — red + crosshair (original style) ===== */
+/* ===== CURSOR - red + crosshair (original style) ===== */
 #xhair {
   position: fixed;
   pointer-events: none;

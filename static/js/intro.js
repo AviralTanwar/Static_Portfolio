@@ -1,5 +1,5 @@
 /* =========================================================
-   INTRO — scroll-scrubbed boot sequence
+   INTRO - scroll-scrubbed boot sequence
    ========================================================= */
 
 function introToggleTheme() {

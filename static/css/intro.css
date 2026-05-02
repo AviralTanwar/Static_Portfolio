@@ -1,5 +1,5 @@
 /* =========================================================
-   INTRO OVERLAY — scroll-scrubbed boot animation
+   INTRO OVERLAY - scroll-scrubbed boot animation
    Sits above portfolio; body.intro-locked prevents real scroll.
    ========================================================= */
 
@@ -85,7 +85,7 @@ body.intro-revealing > #bean-corner {
 }
 .intro-scene.on { opacity: 1; }
 
-/* Scene 1 — Terminal */
+/* Scene 1 - Terminal */
 .term-window {
   width: min(720px, 82vw);
   background: color-mix(in srgb, var(--ink) 96%, var(--accent));
@@ -145,7 +145,7 @@ body.intro-revealing > #bean-corner {
 }
 @keyframes cur-blink { 50% { opacity: 0; } }
 
-/* Scene 2 — Identity glyph */
+/* Scene 2 - Identity glyph */
 .glyph-wrap {
   text-align: center;
   transform-origin: center;
@@ -192,7 +192,7 @@ body.intro-revealing > #bean-corner {
   margin: 18px auto 0;
 }
 
-/* Scene 3 — Life DAG (horizontal airflow style) */
+/* Scene 3 - Life DAG (horizontal airflow style) */
 .scene-pipe { flex-direction: column; gap: 18px; }
 .pipe-title {
   font-size: 11px;

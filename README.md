@@ -27,9 +27,9 @@
 
 ## What this is
 
-A personal portfolio built as an actual engineering project — not a theme, not a site builder, not a WordPress. Every pixel is hand-coded.
+A personal portfolio built as an actual engineering project - not a theme, not a site builder, not a WordPress. Every pixel is hand-coded.
 
-The key design decision: **all content lives in JSON files.** The HTML is a skeleton. JavaScript fetches the data and renders everything at runtime. Update a JSON, refresh the browser — done. No build step, no recompile, no touching HTML.
+The key design decision: **all content lives in JSON files.** The HTML is a skeleton. JavaScript fetches the data and renders everything at runtime. Update a JSON, refresh the browser - done. No build step, no recompile, no touching HTML.
 
 ---
 
@@ -75,14 +75,14 @@ app.py serves index.html
 
 | Feature | How it works |
 |---|---|
-| **Canvas intro** | `intro.js` — scroll-scrubbed frame animation using Canvas API |
-| **Scroll animations** | `IntersectionObserver` — reveal, skill tag stagger, KPI count-up |
+| **Canvas intro** | `intro.js` - scroll-scrubbed frame animation using Canvas API |
+| **Scroll animations** | `IntersectionObserver` - reveal, skill tag stagger, KPI count-up |
 | **Sniper cursor** | Custom CSS cursor that tracks pointer state |
 | **Cover letter generator** | Reads live JSON data → builds letter → opens as Blob URL (no popup blockers) |
 | **Resume modal** | Role-picker modal fetches `resumes.json` dynamically |
-| **Project cards** | Link field in `projects.json` — `null` = static card, URL = clickable `<a>` |
+| **Project cards** | Link field in `projects.json` - `null` = static card, URL = clickable `<a>` |
 | **Clipboard copy** | Email + phone copy to clipboard on click (no Outlook, no dialer) |
-| **`/api/excuse`** | Flask endpoint — scrapes a developer excuse for the intro sequence |
+| **`/api/excuse`** | Flask endpoint - scrapes a developer excuse for the intro sequence |
 | **Fully responsive** | 360px → 1400px+ breakpoints, no layout breaks |
 
 ---
@@ -119,7 +119,7 @@ That's it. Three packages. No webpack, no npm, no node_modules.
 Everything you'd ever want to change is in `static/data/`. Open the relevant JSON, edit, save, refresh.
 
 <details>
-<summary><strong>meta.json</strong> — name, email, phone, location, portfolio URL</summary>
+<summary><strong>meta.json</strong> - name, email, phone, location, portfolio URL</summary>
 
 ```json
 {
@@ -136,13 +136,13 @@ Everything you'd ever want to change is in `static/data/`. Open the relevant JSO
 </details>
 
 <details>
-<summary><strong>experience.json</strong> — timeline entries</summary>
+<summary><strong>experience.json</strong> - timeline entries</summary>
 
 ```json
 {
   "company": "NRV DesignX",
-  "role": "Associate Manager — Platform Owner",
-  "period": "Oct 2025 – Present",
+  "role": "Associate Manager - Platform Owner",
+  "period": "Oct 2025 - Present",
   "pipeline": true,
   "kpis": [
     { "value": "1M+",  "label": "records / month" },
@@ -154,7 +154,7 @@ Everything you'd ever want to change is in `static/data/`. Open the relevant JSO
 </details>
 
 <details>
-<summary><strong>projects.json</strong> — cards with optional links</summary>
+<summary><strong>projects.json</strong> - cards with optional links</summary>
 
 ```json
 {
@@ -170,7 +170,7 @@ Set `"link"` to a URL to make the card clickable. `null` renders it as a static 
 </details>
 
 <details>
-<summary><strong>cover_letter.json</strong> — generation config</summary>
+<summary><strong>cover_letter.json</strong> - generation config</summary>
 
 ```json
 {
@@ -228,15 +228,15 @@ Static_Portfolio/
 | Backend | Flask | Minimal. Serves one file and one API route. |
 | Frontend | Vanilla JS | No build toolchain, no dependencies, full control. |
 | Styling | Plain CSS | Four files, clean cascade, no preprocessor needed. |
-| Animation | Canvas API + CSS | Native browser — no GSAP, no Three.js. |
+| Animation | Canvas API + CSS | Native browser - no GSAP, no Three.js. |
 | Data | JSON | Human-editable, no database, no CMS. |
-| Deploy | GitHub Pages | Static export — Flask runs locally for the excuse API. |
+| Deploy | GitHub Pages | Static export - Flask runs locally for the excuse API. |
 
 ---
 
 ## License
 
-MIT — fork it, steal the architecture, make it yours.
+MIT - fork it, steal the architecture, make it yours.
 
 ---
 
