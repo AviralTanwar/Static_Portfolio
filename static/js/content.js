@@ -3,35 +3,6 @@
    All portfolio copy lives in JSON; edit there, never here.
    ================================================================= */
 
-const PIPELINE_SVG = `<div class="exp-pipeline">
-  <svg id="pipeline-svg" viewBox="0 0 300 380">
-    <text x="8" y="18" class="pip-meta">// xbot.pipeline.live</text>
-    <rect x="80"  y="36"  width="140" height="38" class="pip-rect"/>
-    <text x="150" y="59"  class="pip-text">IoT Source</text>
-    <rect x="55"  y="114" width="88"  height="38" class="pip-rect"/>
-    <text x="99"  y="137" class="pip-text">Airflow DAG</text>
-    <rect x="157" y="114" width="88"  height="38" class="pip-rect"/>
-    <text x="201" y="137" class="pip-text">ManEx v3</text>
-    <rect x="25"  y="196" width="108" height="38" class="pip-rect"/>
-    <text x="79"  y="219" class="pip-text">MySQL</text>
-    <rect x="167" y="196" width="108" height="38" class="pip-rect"/>
-    <text x="221" y="219" class="pip-text">GCS / Logs</text>
-    <rect x="80"  y="278" width="140" height="38" class="pip-rect"/>
-    <text x="150" y="301" class="pip-text">BI / Power BI</text>
-    <line x1="150" y1="74"  x2="99"  y2="114" class="pip-line"/>
-    <line x1="150" y1="74"  x2="201" y2="114" class="pip-line"/>
-    <line x1="99"  y1="152" x2="79"  y2="196" class="pip-line"/>
-    <line x1="99"  y1="152" x2="221" y2="196" class="pip-line"/>
-    <line x1="201" y1="152" x2="79"  y2="196" class="pip-line"/>
-    <line x1="79"  y1="234" x2="150" y2="278" class="pip-line"/>
-    <line x1="221" y1="234" x2="150" y2="278" class="pip-line"/>
-    <circle id="pkt1" cx="150" cy="36" r="3.5" fill="#c1440e" opacity="0"/>
-    <circle id="pkt2" cx="201" cy="114" r="3.5" fill="#1a4f8a" opacity="0"/>
-    <text x="8" y="348" class="pip-meta">records_total: <tspan id="rec-ct" style="fill:var(--accent);opacity:1">1,247,832</tspan></text>
-    <text x="8" y="363" class="pip-meta">dag_status: <tspan style="fill:var(--accent);opacity:1">23/23 OK</tspan></text>
-  </svg>
-</div>`;
-
 const ICONS = {
   email:    `<svg width="18" height="18" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="16" height="12" rx="1"/><path d="M1 4l8 5 8-5"/></svg>`,
   phone:    `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 1.5h4l2 5-2.5 1.5a11 11 0 005 5L12.5 11l5 2v4c0 .8-4 3-9-2s-7.8-9-6-12.5z"/></svg>`,
@@ -68,7 +39,7 @@ function renderExperience(entries) {
     }</div>` : '';
     const bullets = `<ul class="exp-pts">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>`;
     return `
-    <div class="exp${e.pipeline ? ' exp-with-pipeline' : ''} reveal">
+    <div class="exp reveal">
       <div class="exp-main">
         <div class="exp-meta-line">
           <span>${e.period}</span>
@@ -82,7 +53,6 @@ function renderExperience(entries) {
         <h3>${e.title}</h3>
         ${kpis}${bullets}
       </div>
-      ${e.pipeline ? PIPELINE_SVG : ''}
     </div>`;
   }).join('');
 }
