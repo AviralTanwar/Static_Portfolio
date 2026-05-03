@@ -13,7 +13,7 @@
     ],
     "bullets": [
       "Owned end-to-end XBot lifecycle - architecture, deployment, scaling, observability - on GCP VMs with Apache Airflow",
-      "Designed ManEx v3: low-code automation engine, 15+ reusable components, query-driven workflow triggers where non-engineers write a query and invoke a function to trigger an action (mail, data transfer, etc.)",
+      "Designed ManEx v3: low-code automation engine, 30+ reusable components, query-driven workflow triggers where non-engineers write a query and invoke a function to trigger an action (mail, data transfer, etc.)",
       "Implemented data access layer for third-party delivery partners: consolidated multi-table data into a unified table for secure partner consumption - used for dashboard building and data validation, eliminating direct DB exposure",
       "Implemented RBAC for third-party delivery partners: restricted webserver access to partner-specific endpoints only, and consolidated multi-table data into a unified table for secure partner consumption - used for dashboard building and data validation, eliminating direct DB exposure",
       "Delivered custom client integrations - SAP for HRI and multiple custom requirements for ITC and vendor data processing catering 400+ HMCL vendors",
@@ -32,7 +32,7 @@
     "title": "Python Developer - Data Pipelines & Automation",
     "bullets": [
       "Spearheaded a team of 5+ Python developers to design and implement data transformation pipelines, improving processing speed by 30%",
-      "Delivered custom client integrations: Data From SAP (via api) for Moto Corp, ETL pipelines for Dabur and Amber, and automated transfer of transformed planning data into Excel files via Microsoft and Google APIs stored on client Google Drive",
+      "Delivered custom client integrations: Data From SAP (via api) for Hero Moto Corp, ETL pipelines for Dabur and Amber, and automated transfer of transformed planning data into Excel files via Microsoft and Google APIs stored on client Google Drive",
       "Centralized Airflow logs on GCP Cloud Storage for observability and audit trail",
       "Integrated third-party REST APIs with OAuth and JWT authentication mechanisms to expand platform functionality",
       "Designed scalable data framework for partitioning raw MySQL tables, optimising performance across 12 GB+ datasets",

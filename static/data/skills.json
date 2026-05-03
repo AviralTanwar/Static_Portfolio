@@ -24,7 +24,7 @@
     {
       "name": "In Progress",
       "wip": true,
-      "tags": ["Apache Kafka", "Databricks", "BigQuery"]
+      "tags": ["Apache Kafka", "Databricks", "BigQuery", "Apache Sparkxx"]
     }
   ]
 }
