@@ -13,6 +13,17 @@
   {
     "logo": "AT",
     "platform": "HackerRank",
+    "badge": "Certificate",
+    "title": "SQL (Intermediate)",
+    "description": "HackerRank Intermediate SQL Certified, demonstrating proficiency in advanced database querying, joins, subqueries, aggregations, and data manipulation techniques",
+    "link": {
+      "label": "View Certificate ↗",
+      "url": "https://www.hackerrank.com/certificates/iframe/a1828cd120e2"
+    }
+  },
+  {
+    "logo": "AT",
+    "platform": "HackerRank",
     "badge": "Solutions",
     "title": "100+ Problems Solved",
     "description": "Active competitive profile with solutions in Python across data structures, algorithms, SQL, and problem-solving domains. Consistent contributor.",
