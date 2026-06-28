@@ -31,5 +31,16 @@
       "label": "View Profile ↗",
       "url": "https://www.hackerrank.com/aviraltanwar"
     }
+  },
+  {
+    "logo": "AT",
+    "platform": "PwC Switzerland",
+    "badge": "Certificate",
+    "title": "Power BI Job Simulation",
+    "description": "Completed practical Power BI tasks via Forage, covering call centre trends, customer retention, and diversity & inclusion analytics — building dashboards and deriving business insights from real-world datasets.",
+    "link": {
+      "label": "View Certificate ↗",
+      "url": "https://drive.google.com/file/d/1IBJI6uBo5DaTqedwXmA4E3hwv2tBzAdP/view?usp=sharing"
   }
+}
 ]
